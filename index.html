@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OMNI-CULT Sticker Gallery</title>
+<style>
+#oc-sticker-app{ margin-top:20px; }
+  #oc-sticker-app h2{ font-size:22px; margin-bottom:4px; display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
+  #oc-top-count{ font-size:14px; color:#39ff14; }
+
+  #oc-search-wrap{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  position:sticky;
+  top:10px;
+  z-index:1000;
+  background:#000;
+  padding:8px;
+  border-radius:999px;
+  transition:transform .2s ease;
+}
+  #oc-search{
+    flex:1 1 auto; padding:10px 14px; border-radius:999px;
+    border:2px solid #39ff14; font-size:15px; box-sizing:border-box;
+    outline:none; box-shadow:0 0 8px rgba(57,255,20,.6);
+  }
+  #oc-search::placeholder{ color:#6b7280; }
+  #oc-search-clear{
+    flex:0 0 auto; padding:8px 14px; border-radius:999px;
+    border:1px solid #4b5563; background:#020617; color:#e5e7eb;
+    font-size:13px; cursor:pointer; white-space:nowrap;
+  }
+
+  #oc-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:10px; }
+
+  .oc-card{
+    position:relative; border:1px solid #ddd; border-radius:8px;
+    background:#fff; padding:6px 8px 54px; height:246px;
+    box-sizing:border-box; overflow:hidden; display:flex; flex-direction:column;
+  }
+  .oc-card.oc-selected{
+    border-color:#39ff14;
+    box-shadow:0 0 0 3px rgba(57,255,20,1), 0 0 16px rgba(57,255,20,1);
+  }
+.oc-id{
+  font-weight:800;
+  font-size:13px;
+  color:#000 !important;
+
+  height:24px;
+  flex:0 0 24px;
+  line-height:12px;
+  padding:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+
+  overflow:hidden;
+  white-space:normal;
+  overflow-wrap:anywhere;
+word-break:break-word;
+}
+  .oc-img-wrap{
+  width:100%;
+  height:140px;
+   border-radius: 0 !important;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow: visible !important;
+  flex:0 0 140px;
+  margin-top:11px;
+  margin-bottom:11px;
+}
+  .oc-img{
+  max-width:96%;
+  max-height:96%;
+  object-fit:contain;
+  display:block;
+
+  border-radius:0 !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+
+  .oc-controls{
+    position:absolute; left:50%; transform:translateX(-50%); bottom:8px;
+    display:flex; justify-content:center; align-items:center; gap:6px;
+    background:#000; padding:4px 8px; border-radius:999px;
+  }
+  .oc-qty-display{ min-width:24px; text-align:center; font-weight:900; font-size:13px; color:#fff; }
+
+  .oc-btn, .oc-cart-btn{
+    border-radius:999px; border:none; cursor:pointer; background:#39ff14;
+    color:#000; box-shadow:0 0 18px rgba(57,255,20,1); font-weight:900;
+  }
+  .oc-btn{ padding:3px 9px; font-size:14px; line-height:1; }
+  .oc-cart-btn{ padding:2px 7px; font-size:12px; line-height:1; }
+  .oc-btn:disabled, .oc-cart-btn:disabled{ opacity:.4; box-shadow:none; cursor:default; }
+
+  #oc-loadmore{
+    margin:14px auto 0; padding:8px 22px; border-radius:999px;
+    border:1px solid #39ff14; background:#000; color:#f9fafb;
+    cursor:pointer; font-size:14px; font-weight:700; display:none;
+    box-shadow:0 0 18px rgba(57,255,20,1);
+  }
+
+  #oc-cart{
+    margin-top:8px; padding:10px 12px; border-radius:10px;
+    border:1px solid #39ff14; background:#020617;
+    box-shadow:0 0 14px rgba(57,255,20,.6); color:#e5e7eb; font-size:14px;
+  }
+  #oc-cart-list{ max-height:220px; overflow-y:auto; }
+  .oc-cart-empty{ font-style:italic; color:#9ca3af; }
+  .oc-cart-row{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:10px; padding:6px 0; border-bottom:1px solid #111827;
+  }
+  .oc-cart-label{ flex:1 1 auto; font-family:monospace; font-size:14px; word-break:break-word; }
+  .oc-cart-controls{
+    flex:0 0 auto; display:inline-flex; align-items:center; gap:4px;
+    background:#000; padding:3px 8px; border-radius:999px;
+  }
+  .oc-cart-qty{ min-width:18px; text-align:center; font-weight:900; font-size:13px; color:#fff; }
+
+  #oc-copy, #oc-clear{
+    margin-top:8px; padding:6px 14px; border-radius:999px;
+    border:none; cursor:pointer; font-size:12px;
+  }
+  #oc-copy{ background:#111; color:#fff; margin-right:6px; }
+  #oc-clear{ background:#111827; color:#f9fafb; border:1px solid #4b5563; }
+
+  #oc-summary{ position:absolute; left:-9999px; top:-9999px; opacity:0; pointer-events:none; }
+
+  #oc-multi-note{ margin-top:14px; margin-bottom:4px; font-size:13px; color:#9ca3af; }
+  #oc-bottom-bar{
+    margin-top:4px; display:flex; flex-wrap:wrap; gap:10px;
+    align-items:center; justify-content:space-between;
+  }
+  #oc-count-badge{
+    display:inline-flex; align-items:center; gap:4px; padding:4px 10px;
+    border-radius:999px; background:#000; color:#fff; font-size:13px;
+  }
+  #oc-count-number{ font-weight:900; color:#39ff14; }
+  #oc-right-controls{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  #oc-qty-wrap{ display:flex; align-items:center; gap:6px; }
+  #oc-qty-label{ font-size:13px; color:#e5e7eb; }
+  #oc-pack-controls{
+    display:inline-flex; align-items:center; gap:6px; background:#000;
+    padding:4px 8px; border-radius:999px;
+  }
+  #oc-pack-qty{ min-width:24px; text-align:center; font-weight:900; font-size:13px; color:#fff; }
+
+  #oc-add-to-cart{
+    padding:12px 26px; border-radius:999px; border:1px solid #4b5563;
+    font-size:16px; font-weight:900; cursor:pointer; background:#020617;
+    color:#f9fafb;
+  }
+  #oc-add-to-cart.oc-ready{
+    background:#000; border-color:#39ff14; box-shadow:0 0 18px rgba(57,255,20,1);
+  }
+
+  #oc-modal-overlay{
+    position:fixed; inset:0; width:100vw; height:100vh;
+    background:rgba(0,0,0,.7); display:none; align-items:center;
+    justify-content:center; z-index:999999;
+  }
+  #oc-modal-overlay.oc-visible{ display:flex; }
+  #oc-modal{
+    background:#020617; border-radius:12px; padding:16px 18px;
+    border:1px solid #39ff14; color:#e5e7eb; max-width:340px;
+    width:90%; text-align:center; box-shadow:0 0 18px rgba(57,255,20,.9);
+  }
+  #oc-modal-message{ font-size:14px; margin-bottom:12px; }
+  #oc-modal-buttons{ display:flex; justify-content:center; gap:8px; }
+  #oc-modal-confirm, #oc-modal-cancel{
+    border-radius:999px; border:none; padding:6px 16px; cursor:pointer; font-size:13px;
+  }
+  #oc-modal-confirm{ background:#39ff14; color:#000; }
+  #oc-modal-cancel{ background:#111827; color:#e5e7eb; border:1px solid #4b5563; }
+
+  #oc-footer{
+    margin-top:22px; padding-top:18px; border-top:1px solid #111827;
+    color:#e5e7eb; font-size:14px; line-height:1.55;
+  }
+  .oc-section-title{
+    font-size:22px; font-weight:900; text-transform:uppercase; color:#39ff14;
+    letter-spacing:.08em; margin:22px 0 10px;
+    text-shadow:0 0 6px rgba(57,255,20,.85),0 0 12px rgba(57,255,20,.65),0 0 20px rgba(57,255,20,.35);
+  }
+  .oc-section-title.oc-title-xl{ font-size:24px; }
+  .oc-divider{
+    height:1px; margin:18px 0;
+    background:linear-gradient(to right, transparent, rgba(57,255,20,.85), transparent);
+    opacity:.55;
+  }
+  .oc-bullets{ margin:10px 0 0; padding-left:18px; }
+  .oc-bullets li{ margin:6px 0; }
+  .oc-highlight{ color:#39ff14; font-weight:900; text-shadow:0 0 8px rgba(57,255,20,.55); }
+  .oc-email{ color:#39ff14; font-weight:900; text-decoration:none; border-bottom:1px solid rgba(57,255,20,.55); }
+  /* ENLARGEABLE STICKER IMAGES */
+.oc-img{
+  cursor:zoom-in;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+ #oc-image-lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  align-items:center;
+  justify-content:center;
+}
+
+#oc-image-lightbox.oc-open{
+  display:flex;
+}
+
+#oc-image-lightbox-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.92);
+}
+
+/* LARGE VERSION OF THE STICKER CARD */
+#oc-image-lightbox-card{
+  position:relative;
+  z-index:2;
+
+  width:400px;
+  max-width:88vw;
+  height:560px;
+  max-height:88vh;
+
+  box-sizing:border-box;
+  padding:18px 18px 72px;
+
+  background:#fff;
+  border:2px solid #39ff14;
+  border-radius:14px;
+
+  box-shadow:
+    0 0 0 3px rgba(57,255,20,.35),
+    0 0 25px rgba(57,255,20,.75);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* TITLE */
+#oc-image-lightbox-title{
+  width:100%;
+  min-height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#000;
+  font-weight:800;
+  font-size:20px;
+  line-height:22px;
+  text-align:center;
+
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+
+/* IMAGE AREA */
+#oc-image-lightbox-img-wrap{
+  flex:1 1 auto;
+  width:100%;
+  min-height:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:14px 0;
+  overflow:visible;
+}
+
+#oc-image-lightbox-img{
+  max-width:96%;
+  max-height:96%;
+  object-fit:contain;
+  display:block;
+
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* QTY CONTROLS */
+#oc-image-lightbox-controls{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  background:#000;
+  padding:7px 12px;
+  border-radius:999px;
+}
+
+#oc-lightbox-minus,
+#oc-lightbox-plus{
+  border:none;
+  border-radius:999px;
+  background:#39ff14;
+  color:#000;
+
+  font-weight:900;
+  font-size:20px;
+  line-height:1;
+
+  width:34px;
+  height:34px;
+  cursor:pointer;
+
+  box-shadow:0 0 14px rgba(57,255,20,1);
+}
+
+#oc-lightbox-qty{
+  min-width:30px;
+  color:#fff;
+  text-align:center;
+  font-size:17px;
+  font-weight:900;
+}
+
+
+  *{box-sizing:border-box}
+  html{background:#000;color:#e5e7eb}
+  body{
+    margin:0; background:#000; color:#e5e7eb;
+    font-family:Arial,Helvetica,sans-serif;
+  }
+  .oc-shell{max-width:1180px;margin:0 auto;padding:22px 16px 60px}
+  .oc-brand{
+    text-align:center;font-size:30px;font-weight:1000;letter-spacing:.08em;
+    color:#39ff14;text-shadow:0 0 12px rgba(57,255,20,.75);
+    margin:2px 0 4px;
+  }
+  .oc-subtitle{text-align:center;color:#cbd5e1;margin:0 0 22px}
+  #oc-pack-question{
+    border:1px solid #39ff14;background:#020617;border-radius:14px;
+    padding:16px;margin:0 0 16px;text-align:center;
+    box-shadow:0 0 14px rgba(57,255,20,.35);
+  }
+  #oc-pack-question h2{
+    display:block!important;margin:0 0 10px!important;font-size:20px!important;
+    color:#fff;text-transform:uppercase;
+  }
+  #oc-pack-input{
+    width:76px;text-align:center;background:#fff;color:#000;border:2px solid #39ff14;
+    border-radius:999px;font-weight:900;font-size:18px;padding:8px 6px;
+    -moz-appearance:textfield;
+  }
+  #oc-pack-input::-webkit-outer-spin-button,#oc-pack-input::-webkit-inner-spin-button{
+    -webkit-appearance:none;margin:0;
+  }
+  #oc-pack-help{margin-top:9px;font-size:14px;color:#cbd5e1}
+  #oc-pack-help strong{color:#39ff14}
+  #oc-progress{
+    text-align:center;font-weight:1000;font-size:18px;margin:12px 0 14px;
+    color:#fff;
+  }
+  #oc-progress.oc-complete{color:#39ff14;text-shadow:0 0 8px rgba(57,255,20,.65)}
+  #oc-copy-main{
+    display:block;width:min(420px,100%);margin:16px auto 7px;padding:13px 18px;
+    border-radius:999px;border:1px solid #4b5563;background:#111827;color:#9ca3af;
+    font-size:16px;font-weight:1000;cursor:not-allowed;
+  }
+  #oc-copy-main.oc-ready{
+    background:#39ff14;color:#000;border-color:#39ff14;cursor:pointer;
+    box-shadow:0 0 18px rgba(57,255,20,1);
+  }
+  #oc-send-note{
+    text-align:center;font-weight:1000;font-size:14px;color:#fff;
+    text-transform:uppercase;margin-bottom:18px;
+  }
+  #oc-copy-status{text-align:center;min-height:20px;color:#39ff14;font-weight:900}
+  #oc-cart{margin-top:8px}
+  #oc-cart-actions{text-align:center}
+  #oc-clear{margin-top:8px}
+  #oc-image-lightbox-controls{display:flex}
+  @media(max-width:600px){
+    .oc-shell{padding:14px 10px 40px}
+    .oc-brand{font-size:24px}
+    #oc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .oc-card{height:238px;padding-left:5px;padding-right:5px}
+  }
+
+</style>
+</head>
+<body>
+<main class="oc-shell">
+  <div class="oc-brand">OMNI-CULT STICKER GALLERY</div>
+  <p class="oc-subtitle">Choose your sticker designs, copy your finished list, then send it in a message after placing your order.</p>
+
+  <section id="oc-pack-question">
+    <h2>HOW MANY 10-PACKS DO YOU WANT?</h2>
+    <div id="oc-pack-controls">
+      <button type="button" id="oc-pack-minus" class="oc-btn" aria-label="Decrease packs">–</button>
+      <input id="oc-pack-input" type="number" min="1" step="1" value="1" inputmode="numeric" aria-label="Number of 10-packs">
+      <button type="button" id="oc-pack-plus" class="oc-btn" aria-label="Increase packs">+</button>
+    </div>
+    <div id="oc-pack-help">You need to choose <strong id="oc-required">10</strong> stickers.</div>
+  </section>
+
+  <div id="oc-progress">0 OF 10 SELECTED — CHOOSE 10 MORE</div>
+
+  <div id="oc-search-wrap">
+    <input id="oc-search" type="text" placeholder="Search stickers...">
+    <button id="oc-search-clear" type="button">Clear</button>
+  </div>
+
+  <div id="oc-grid"></div>
+  <button id="oc-loadmore" type="button">Load More</button>
+
+  <section style="margin-top:22px;padding-top:14px;border-top:1px solid #111827">
+    <h3 style="margin-bottom:6px">Your Selections</h3>
+    <div id="oc-cart"><div id="oc-cart-list"></div></div>
+    <div id="oc-cart-actions">
+      <button id="oc-clear" type="button">Remove all stickers</button>
+    </div>
+    <button id="oc-copy-main" type="button" disabled>COPY MY STICKER LIST</button>
+    <div id="oc-send-note">SEND THIS LIST IN A MESSAGE AFTER PLACING ORDER</div>
+    <div id="oc-copy-status"></div>
+  </section>
+</main>
+
+<div id="oc-modal-overlay" aria-hidden="true">
+  <div id="oc-modal" role="dialog" aria-modal="true" aria-label="Message">
+    <div id="oc-modal-message"></div>
+    <div id="oc-modal-buttons">
+      <button id="oc-modal-confirm" type="button">OK</button>
+      <button id="oc-modal-cancel" type="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="oc-image-lightbox">
+  <div id="oc-image-lightbox-backdrop"></div>
+  <div id="oc-image-lightbox-card">
+    <div id="oc-image-lightbox-title"></div>
+    <div id="oc-image-lightbox-img-wrap">
+      <img id="oc-image-lightbox-img" alt="">
+    </div>
+    <div id="oc-image-lightbox-controls">
+      <button type="button" id="oc-lightbox-minus">–</button>
+      <span id="oc-lightbox-qty">0</span>
+      <button type="button" id="oc-lightbox-plus">+</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const JSON_URL = "./designs.json";
+  const IMG_BASE = "./img/";
+  const PAGE = 30;
+  const STORAGE_KEY = "ocPublicStickerSelections_v1";
+
+  const grid = document.getElementById("oc-grid");
+  const search = document.getElementById("oc-search");
+  const clearSearch = document.getElementById("oc-search-clear");
+  const loadMore = document.getElementById("oc-loadmore");
+  const cartList = document.getElementById("oc-cart-list");
+  const clearBtn = document.getElementById("oc-clear");
+  const copyBtn = document.getElementById("oc-copy-main");
+  const copyStatus = document.getElementById("oc-copy-status");
+  const progress = document.getElementById("oc-progress");
+  const packMinus = document.getElementById("oc-pack-minus");
+  const packPlus = document.getElementById("oc-pack-plus");
+  const packInput = document.getElementById("oc-pack-input");
+  const requiredEl = document.getElementById("oc-required");
+
+  const imageLightbox = document.getElementById("oc-image-lightbox");
+  const imageLightboxImg = document.getElementById("oc-image-lightbox-img");
+  const imageLightboxTitle = document.getElementById("oc-image-lightbox-title");
+  const lightboxMinus = document.getElementById("oc-lightbox-minus");
+  const lightboxPlus = document.getElementById("oc-lightbox-plus");
+  const lightboxQty = document.getElementById("oc-lightbox-qty");
+
+  const modalOverlay = document.getElementById("oc-modal-overlay");
+  const modalMessage = document.getElementById("oc-modal-message");
+  const modalConfirm = document.getElementById("oc-modal-confirm");
+  const modalCancel = document.getElementById("oc-modal-cancel");
+
+  let allItems = [];
+  let filtered = [];
+  let shown = PAGE;
+  let selections = {};
+  let lightboxItem = null;
+  let lightboxKey = null;
+
+  function packQty(){
+    const n = Math.floor(Number(packInput.value));
+    return Number.isFinite(n) && n >= 1 ? n : 1;
+  }
+  function maxAllowed(){ return packQty() * 10; }
+  function totalSelected(){
+    return Object.values(selections).reduce((sum,item)=>sum + item.qty,0);
+  }
+  function itemName(item){ return item.name || item.id || item.file || ""; }
+  function itemFile(item){ return item.file || item.img || ""; }
+  function normalizeItems(data){
+    if(Array.isArray(data)) return data;
+    if(data && Array.isArray(data.items)) return data.items;
+    if(data && Array.isArray(data.designs)) return data.designs;
+    return [];
+  }
+  function save(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({selections, packs:packQty()}));
+  }
+  function loadSaved(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if(saved && saved.selections) selections = saved.selections;
+      if(saved && saved.packs >= 1) packInput.value = Math.floor(saved.packs);
+    }catch(e){}
+  }
+  function showModal(message, confirmMode=false, onConfirm=null){
+    modalMessage.textContent = message;
+    modalOverlay.classList.add("oc-visible");
+    modalOverlay.setAttribute("aria-hidden","false");
+    modalCancel.style.display = confirmMode ? "inline-block" : "none";
+    modalConfirm.onclick = function(){
+      modalOverlay.classList.remove("oc-visible");
+      modalOverlay.setAttribute("aria-hidden","true");
+      if(onConfirm) onConfirm();
+    };
+    modalCancel.onclick = function(){
+      modalOverlay.classList.remove("oc-visible");
+      modalOverlay.setAttribute("aria-hidden","true");
+    };
+  }
+  function fitTitle(el){
+    let size=13;
+    el.style.fontSize=size+"px";
+    el.style.lineHeight="12px";
+    while(el.scrollHeight>24 && size>9){
+      size-=0.5; el.style.fontSize=size+"px";
+    }
+  }
+  function updateProgress(){
+    const total=totalSelected(), max=maxAllowed(), left=max-total;
+    requiredEl.textContent=max;
+    if(total===max){
+      progress.textContent=`${total} OF ${max} SELECTED — YOU'RE DONE`;
+      progress.classList.add("oc-complete");
+      copyBtn.disabled=false;
+      copyBtn.classList.add("oc-ready");
+    }else{
+      progress.textContent=`${total} OF ${max} SELECTED — CHOOSE ${Math.max(left,0)} MORE`;
+      progress.classList.remove("oc-complete");
+      copyBtn.disabled=true;
+      copyBtn.classList.remove("oc-ready");
+    }
+  }
+  function render(){
+    grid.innerHTML="";
+    filtered.slice(0,shown).forEach(item=>{
+      const name=itemName(item), file=itemFile(item), key=name||file;
+      const qty=selections[key] ? selections[key].qty : 0;
+      const card=document.createElement("div");
+      card.className="oc-card"+(qty>0?" oc-selected":"");
+      card.innerHTML=`
+        <div class="oc-id"></div>
+        <div class="oc-img-wrap"><img class="oc-img" loading="lazy"></div>
+        <div class="oc-controls">
+          <button type="button" class="oc-btn oc-minus">–</button>
+          <span class="oc-qty-display">${qty}</span>
+          <button type="button" class="oc-btn oc-plus">+</button>
+        </div>`;
+      const title=card.querySelector(".oc-id");
+      const img=card.querySelector(".oc-img");
+      title.textContent=name;
+      img.src=IMG_BASE+encodeURIComponent(file);
+      img.alt=name;
+      img.draggable=false;
+      img.addEventListener("contextmenu",e=>e.preventDefault());
+      img.addEventListener("click",()=>{
+        lightboxItem=item; lightboxKey=key;
+        imageLightboxImg.src=img.src; imageLightboxImg.alt=name;
+        imageLightboxTitle.textContent=name;
+        lightboxQty.textContent=qty;
+        imageLightbox.classList.add("oc-open");
+      });
+      card.querySelector(".oc-plus").addEventListener("click",()=>addSelection(item));
+      card.querySelector(".oc-minus").addEventListener("click",()=>removeSelection(key));
+      grid.appendChild(card);
+      fitTitle(title);
+    });
+    loadMore.style.display=shown<filtered.length?"block":"none";
+    updateCart();
+  }
+  function updateCart(){
+    cartList.innerHTML="";
+    const entries=Object.entries(selections);
+    if(entries.length===0){
+      cartList.innerHTML='<div class="oc-cart-empty">No stickers selected yet.</div>';
+    }else{
+      entries.forEach(([key,item])=>{
+        const row=document.createElement("div");
+        row.className="oc-cart-row";
+        row.innerHTML=`
+          <div class="oc-cart-label"></div>
+          <div class="oc-cart-controls">
+            <button type="button" class="oc-cart-btn oc-cart-minus">–</button>
+            <span class="oc-cart-qty">${item.qty}</span>
+            <button type="button" class="oc-cart-btn oc-cart-plus">+</button>
+          </div>`;
+        row.querySelector(".oc-cart-label").textContent=item.name;
+        row.querySelector(".oc-cart-plus").addEventListener("click",()=>addSelection(item));
+        row.querySelector(".oc-cart-minus").addEventListener("click",()=>removeSelection(key));
+        cartList.appendChild(row);
+      });
+    }
+    updateProgress(); save();
+  }
+  function addSelection(item){
+    const max=maxAllowed();
+    if(totalSelected()>=max){
+      showModal(`You already selected ${max} stickers. Remove one before adding another.`);
+      return;
+    }
+    const name=itemName(item), file=itemFile(item), key=name||file;
+    if(!selections[key]) selections[key]={name,file,qty:0};
+    selections[key].qty+=1;
+    render();
+  }
+  function removeSelection(key){
+    if(!selections[key]) return;
+    selections[key].qty-=1;
+    if(selections[key].qty<=0) delete selections[key];
+    render();
+  }
+  function applySearch(){
+    const q=search.value.trim().toLowerCase();
+    filtered=allItems.filter(item=>
+      itemName(item).toLowerCase().includes(q) ||
+      itemFile(item).toLowerCase().includes(q)
+    );
+    shown=PAGE;
+    render();
+  }
+  function setPacks(n){
+    n=Math.max(1,Math.floor(Number(n)||1));
+    const oldMax=maxAllowed();
+    const total=totalSelected();
+    if(n*10 < total){
+      showModal(
+        `You already selected ${total} stickers. Remove stickers before lowering your order to ${n} 10-pack${n===1?"":"s"}.`
+      );
+      packInput.value=Math.ceil(total/10);
+    }else{
+      packInput.value=n;
+    }
+    updateProgress(); save();
+  }
+  function copyList(){
+    if(totalSelected()!==maxAllowed()) return;
+    const lines=[
+      `10-PACKS: ${packQty()}`,
+      `TOTAL STICKERS: ${totalSelected()}`,
+      ""
+    ];
+    Object.values(selections).forEach(item=>lines.push(`${item.name} x${item.qty}`));
+    navigator.clipboard.writeText(lines.join("\n")).then(()=>{
+      copyStatus.textContent="LIST COPIED — SEND IT IN A MESSAGE AFTER PLACING ORDER";
+      setTimeout(()=>copyStatus.textContent="",5000);
+    }).catch(()=>showModal("Could not copy automatically. Please try again."));
+  }
+
+  loadMore.addEventListener("click",()=>{shown+=PAGE;render();});
+  search.addEventListener("input",applySearch);
+  clearSearch.addEventListener("click",()=>{search.value="";applySearch();});
+  packMinus.addEventListener("click",()=>setPacks(packQty()-1));
+  packPlus.addEventListener("click",()=>setPacks(packQty()+1));
+  packInput.addEventListener("change",()=>setPacks(packInput.value));
+  copyBtn.addEventListener("click",copyList);
+  clearBtn.addEventListener("click",()=>showModal("Remove all selected stickers?",true,()=>{
+    selections={}; save(); render();
+  }));
+
+  function closeLightbox(){
+    imageLightbox.classList.remove("oc-open");
+    imageLightboxImg.src=""; lightboxItem=null; lightboxKey=null;
+  }
+  imageLightbox.addEventListener("click",e=>{
+    if(e.target===lightboxPlus || e.target===lightboxMinus) return;
+    closeLightbox();
+  });
+  lightboxPlus.addEventListener("click",e=>{
+    e.stopPropagation();
+    if(!lightboxItem) return;
+    addSelection(lightboxItem);
+    lightboxQty.textContent=selections[lightboxKey]?selections[lightboxKey].qty:0;
+  });
+  lightboxMinus.addEventListener("click",e=>{
+    e.stopPropagation();
+    if(!lightboxKey) return;
+    removeSelection(lightboxKey);
+    lightboxQty.textContent=selections[lightboxKey]?selections[lightboxKey].qty:0;
+  });
+  imageLightbox.addEventListener("contextmenu",e=>e.preventDefault());
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape" && imageLightbox.classList.contains("oc-open")) closeLightbox();
+  });
+
+  loadSaved();
+  fetch(JSON_URL+"?v="+Date.now())
+    .then(res=>{if(!res.ok) throw new Error("HTTP "+res.status); return res.json();})
+    .then(data=>{
+      allItems=normalizeItems(data);
+      filtered=allItems.slice();
+      shown=PAGE;
+      render();
+    })
+    .catch(err=>{
+      console.error(err);
+      showModal("Sticker gallery failed to load. Check designs.json and the img folder.");
+    });
+})();
+</script>
+</body>
+</html>
