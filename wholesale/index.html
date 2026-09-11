@@ -1326,39 +1326,7 @@ tr.active-tier td{
   display:none !important;
 }
 
-.search-x{
-  position:absolute;
-  right:14px;
-  top:50%;
-  transform:translateY(-50%);
-  width:34px;
-  height:34px;
-  padding:0;
-  border:0;
-  background:transparent;
-  color:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  line-height:1;
-  font-weight:1000;
-  font-family:Arial, Helvetica, sans-serif;
-  cursor:pointer;
-  opacity:0;
-  pointer-events:none;
-  text-shadow:none;
-  transition:opacity .12s ease, transform .12s ease;
-}
 
-.search-x.visible{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.search-x:hover{
-  transform:translateY(-50%) scale(1.12);
-}
 
 @media(max-width:1100px){
   .search-wrap{
@@ -1371,6 +1339,155 @@ tr.active-tier td{
     grid-column:1 / -1;
     justify-self:end;
   }
+}
+
+
+/* === BRANDED CONFIRM MODAL === */
+.confirm-modal{
+  position:fixed;
+  inset:0;
+  z-index:1000000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.80);
+  backdrop-filter:blur(3px);
+}
+.confirm-modal.open{
+  display:flex;
+}
+.confirm-card{
+  width:min(460px,92vw);
+  padding:24px 24px 22px;
+  border:1px solid #39ff14;
+  border-radius:16px;
+  background:linear-gradient(180deg,#091009,#020402);
+  color:#fff;
+  text-align:center;
+  box-shadow:
+    0 0 12px rgba(57,255,20,.45),
+    0 0 28px rgba(57,255,20,.22);
+}
+.confirm-title{
+  color:#39ff14;
+  font-size:1.2rem;
+  font-weight:1000;
+  letter-spacing:.05em;
+  margin-bottom:10px;
+  text-shadow:0 0 8px rgba(57,255,20,.55);
+}
+.confirm-text{
+  color:#fff;
+  font-size:.95rem;
+  line-height:1.45;
+  margin-bottom:20px;
+}
+.confirm-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+}
+.confirm-btn{
+  min-width:140px;
+  padding:11px 18px;
+  border-radius:999px;
+  font-weight:1000;
+  cursor:pointer;
+  border:1px solid #39ff14;
+  transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.confirm-cancel{
+  background:#071007;
+  color:#39ff14;
+  box-shadow:0 0 8px rgba(57,255,20,.35);
+}
+.confirm-remove{
+  background:#39ff14;
+  color:#000;
+  box-shadow:
+    0 0 6px #39ff14,
+    0 0 14px rgba(57,255,20,.70);
+}
+.confirm-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:
+    0 0 8px #39ff14,
+    0 0 18px rgba(57,255,20,.85);
+}
+@media(max-width:520px){
+  .confirm-actions{
+    flex-direction:column;
+  }
+  .confirm-btn{
+    width:100%;
+  }
+}
+
+
+/* === INTEGRATED SEARCH CLEAR CONTROL === */
+.search-field-wrap{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:stretch;
+  min-width:0;
+  border:2px solid #39ff14;
+  border-radius:999px;
+  background:#fff;
+  overflow:hidden;
+  box-shadow:
+    0 0 7px #39ff14,
+    0 0 16px rgba(57,255,20,.65);
+}
+
+.search-field-wrap #searchInput{
+  width:100% !important;
+  min-width:0;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:#fff !important;
+  color:#000 !important;
+  padding:11px 16px !important;
+  outline:none !important;
+}
+
+.search-field-wrap #searchInput:focus{
+  box-shadow:none !important;
+}
+
+/* Hide the browser's built-in search cancel icon */
+#searchInput::-webkit-search-cancel-button{
+  -webkit-appearance:none !important;
+  appearance:none !important;
+  display:none !important;
+}
+
+.search-clear-integrated{
+  min-width:92px;
+  padding:0 18px;
+  border:0;
+  border-left:1px solid #2c2c2c;
+  border-radius:0;
+  background:#111;
+  color:#fff;
+  font-size:.82rem;
+  font-weight:1000;
+  letter-spacing:.04em;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transition:background .12s ease, opacity .12s ease;
+}
+
+.search-clear-integrated.visible{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.search-clear-integrated:hover{
+  background:#242424;
 }
 
 </style>
@@ -1399,7 +1516,7 @@ tr.active-tier td{
 <section class="panel"><h2 class="section-title">Choose Your Stickers</h2><div class="search-wrap">
   <div class="search-field-wrap">
     <input id="searchInput" type="search" placeholder="Search stickers..." autocomplete="off">
-    <button type="button" id="searchX" class="search-x" aria-label="Clear search">×</button>
+    <button type="button" id="searchX" class="search-clear-integrated" aria-label="Clear search">CLEAR</button>
   </div>
   <div id="stickySelected" class="sticky-selected">SELECTED: 0</div>
   <button type="button" id="clearAllBtnTop" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button>
@@ -1427,7 +1544,7 @@ tr.active-tier td{
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchX=document.getElementById('searchX'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),stickySelected=document.getElementById('stickySelected'),minimumNotice=document.getElementById('minimumNotice'),submitBtn=document.querySelector('.submit'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];
+document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchX=document.getElementById('searchX'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),confirmModal=document.getElementById('confirmModal'),confirmCancel=document.getElementById('confirmCancel'),confirmRemove=document.getElementById('confirmRemove'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),stickySelected=document.getElementById('stickySelected'),minimumNotice=document.getElementById('minimumNotice'),submitBtn=document.querySelector('.submit'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];
 const tierRows=[
   {min:200,max:499,el:document.getElementById('tier200')},
   {min:500,max:999,el:document.getElementById('tier500')},
@@ -1674,19 +1791,34 @@ searchX.onclick=()=>{
 
 loadMoreBtn.onclick=more;
 const clearSelections=()=>{
-  if(!Object.keys(selections).length){
-    return;
-  }
-  if(window.confirm('Remove all selected stickers?')){
-    const keepRendered=rendered;
-    selections={};
-    persist();
-
-    /* Re-render the visible cards immediately so quantities, green borders,
-       sticky total and mini cart all clear without a page refresh. */
-    renderToCount(keepRendered,true);
-  }
+  if(!Object.keys(selections).length) return;
+  confirmModal.classList.add('open');
+  confirmModal.setAttribute('aria-hidden','false');
 };
+
+const closeConfirm=()=>{
+  confirmModal.classList.remove('open');
+  confirmModal.setAttribute('aria-hidden','true');
+};
+
+confirmCancel.addEventListener('click', closeConfirm);
+
+confirmRemove.addEventListener('click', ()=>{
+  const keepRendered=rendered;
+  selections={};
+  persist();
+  closeConfirm();
+  renderToCount(keepRendered,true);
+});
+
+confirmModal.addEventListener('click', e=>{
+  if(e.target===confirmModal) closeConfirm();
+});
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && confirmModal.classList.contains('open')) closeConfirm();
+});
+
 if(clearAllBtnTop) clearAllBtnTop.addEventListener('click', clearSelections);
 
 
@@ -1709,4 +1841,16 @@ orderForm.addEventListener('submit',async e=>{e.preventDefault();const t=summary
   return;
 }const lines=Object.entries(selections).map(([key,qty])=>({qty,design:all.find(d=>d.key===key)})).filter(x=>x.design).sort((a,b)=>a.design.display.localeCompare(b.design.display)).map(x=>`${x.design.display} x ${x.qty}`);const u=unit(t);lines.push('','TOTAL STICKERS: '+t);if(u){lines.push('PRICE PER STICKER: $'+u.toFixed(2));lines.push('ESTIMATED TOTAL: $'+(t*u).toFixed(2)+' USD (before tax & shipping)')}itemsField.value=lines.join('\\n');persist();formStatus.textContent='Submitting order...';try{await fetch(orderForm.action,{method:'POST',mode:'no-cors',body:new FormData(orderForm)})}catch(err){console.error(err)}window.location.href='success.html'})});
 </script>
+
+<div id="confirmModal" class="confirm-modal" aria-hidden="true">
+  <div class="confirm-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+    <div class="confirm-title" id="confirmTitle">REMOVE ALL SELECTIONS?</div>
+    <div class="confirm-text">This will clear every selected sticker from your order.</div>
+    <div class="confirm-actions">
+      <button type="button" id="confirmCancel" class="confirm-btn confirm-cancel">CANCEL</button>
+      <button type="button" id="confirmRemove" class="confirm-btn confirm-remove">REMOVE ALL</button>
+    </div>
+  </div>
+</div>
+
 </body></html>
