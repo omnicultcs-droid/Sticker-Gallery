@@ -1191,9 +1191,11 @@ searchInput.oninput=()=>{
     /* Re-render search results, then jump to the top of the sticker section/search bar. */
     renderToCount(PAGE_SIZE,false);
     requestAnimationFrame(()=>{
-      const topTarget=document.querySelector('.panel .section-title') || document.querySelector('.search-wrap');
-      if(topTarget){
-        const y=topTarget.getBoundingClientRect().top + window.scrollY - 16;
+      /* Jump to the top of THIS sticker-gallery panel so the
+         "CHOOSE YOUR STICKERS" heading + search bar are both visible. */
+      const galleryPanel=searchInput.closest('.panel');
+      if(galleryPanel){
+        const y=galleryPanel.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({top:y,left:0,behavior:'auto'});
       }
     });
