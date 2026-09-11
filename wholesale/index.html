@@ -281,10 +281,121 @@ button{font:inherit}.btn{border:1px solid var(--neon);background:#071007;color:v
   .design-card{height:238px;padding-left:5px;padding-right:5px}
 }
 
+
+/* === WHOLESALE CARD ALIGNMENT + NEON BUTTON PASS === */
+
+/* Keep every gallery tile on the same grid and same height */
+.gallery{
+  align-items:stretch !important;
+}
+.design-card{
+  height:260px !important;
+  min-height:260px !important;
+  max-height:260px !important;
+  display:grid !important;
+  grid-template-rows:36px 1fr 42px !important;
+  padding:8px !important;
+  overflow:hidden !important;
+}
+.design-name{
+  height:36px !important;
+  min-height:36px !important;
+  max-height:36px !important;
+  margin:0 !important;
+  padding:0 3px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  line-height:15px !important;
+  overflow:hidden !important;
+}
+.thumb{
+  height:auto !important;
+  min-height:0 !important;
+  margin:4px 0 !important;
+  flex:none !important;
+  align-self:stretch !important;
+}
+.thumb img{
+  max-width:96% !important;
+  max-height:100% !important;
+}
+.qty-row{
+  position:static !important;
+  left:auto !important;
+  bottom:auto !important;
+  transform:none !important;
+  align-self:end !important;
+  justify-self:center !important;
+  margin:0 !important;
+  height:36px !important;
+  min-height:36px !important;
+}
+
+/* All interactive buttons get the OMNI-CULT neon treatment */
+.btn,
+.qty-btn,
+.modal-qty-btn,
+.modal-close,
+.search-clear,
+.load-btn,
+.submit,
+.btn-danger{
+  box-shadow:
+    0 0 7px rgba(57,255,20,.95),
+    0 0 15px rgba(57,255,20,.55) !important;
+  transition:
+    transform .12s ease,
+    box-shadow .12s ease,
+    filter .12s ease,
+    background .12s ease !important;
+}
+.btn:hover,
+.qty-btn:hover,
+.modal-qty-btn:hover,
+.modal-close:hover,
+.search-clear:hover,
+.load-btn:hover,
+.submit:hover,
+.btn-danger:hover{
+  box-shadow:
+    0 0 9px rgba(57,255,20,1),
+    0 0 22px rgba(57,255,20,.85) !important;
+  filter:brightness(1.08);
+}
+
+/* Make the dark utility buttons glow green too */
+.search-clear,
+.modal-close{
+  border-color:#39ff14 !important;
+  color:#fff !important;
+}
+
+/* Remove-all remains visually red, but still has the requested neon glow */
+.btn-danger{
+  box-shadow:
+    0 0 7px rgba(255,90,90,.9),
+    0 0 15px rgba(255,90,90,.5) !important;
+}
+.btn-danger:hover{
+  box-shadow:
+    0 0 9px rgba(255,90,90,1),
+    0 0 22px rgba(255,90,90,.8) !important;
+}
+
+@media(max-width:600px){
+  .design-card{
+    height:252px !important;
+    min-height:252px !important;
+    max-height:252px !important;
+  }
+}
+
 </style>
 </head>
 <body>
-<!-- OMNI-CULT WHOLESALE MATCHED GALLERY UI 2026-09-10 -->
+<!-- OMNI-CULT WHOLESALE EVEN CARDS + GLOW BUTTONS 2026-09-10 -->
 <div class="page">
 <header>
 <img src="../Logo.png" alt="OMNI-CULT" class="oc-logo">
