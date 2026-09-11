@@ -1279,8 +1279,8 @@ tr.active-tier td{
 
 /* === FINAL HEADER COPY / WIDTH TWEAK === */
 .instruction-box{
-  width:min(1240px, 94vw) !important;
-  max-width:1240px !important;
+  width:min(1120px, 92vw) !important;
+  max-width:1120px !important;
 }
 
 /* Keep the three desktop instruction lines on one line where space allows */
@@ -1295,27 +1295,88 @@ tr.active-tier td{
 }
 
 
-/* === FINAL SEARCH POLISH === */
-#search{
-  padding-right:54px !important;
+/* === FINAL SEARCH + HEADER WIDTH POLISH === */
+
+/* Slightly narrower than the previous version without crowding step 2 */
+.instruction-box{
+  width:min(1180px, 92vw) !important;
+  max-width:1180px !important;
 }
-#search::-webkit-search-cancel-button{
+
+/* Search row is now: input / selected count / remove all */
+.search-wrap{
+  grid-template-columns:minmax(0,1fr) auto auto !important;
+  gap:10px !important;
+}
+
+.search-field-wrap{
+  position:relative;
+  min-width:0;
+}
+
+.search-field-wrap #searchInput{
+  width:100% !important;
+  padding-right:58px !important;
+}
+
+/* Hide Chrome's small built-in search X; use our larger themed one */
+#searchInput::-webkit-search-cancel-button{
   -webkit-appearance:none !important;
   appearance:none !important;
-  width:30px !important;
-  height:30px !important;
-  cursor:pointer !important;
-  opacity:1 !important;
-  background:
-    linear-gradient(45deg, transparent 43%, #071007 43%, #071007 57%, transparent 57%),
-    linear-gradient(-45deg, transparent 43%, #071007 43%, #071007 57%, transparent 57%),
-    #39ff14 !important;
-  border-radius:50% !important;
-  box-shadow:0 0 7px #39ff14, 0 0 14px rgba(57,255,20,.85) !important;
+  display:none !important;
 }
-#search::-webkit-search-cancel-button:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 10px #39ff14, 0 0 20px #39ff14 !important;
+
+.search-x{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%) scale(.88);
+  width:36px;
+  height:36px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#39ff14;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  line-height:1;
+  font-weight:1000;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  box-shadow:
+    0 0 6px #39ff14,
+    0 0 14px rgba(57,255,20,.85);
+  transition:opacity .12s ease, transform .12s ease, box-shadow .12s ease;
+}
+
+.search-x.visible{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(-50%) scale(1);
+}
+
+.search-x:hover{
+  transform:translateY(-50%) scale(1.08);
+  box-shadow:
+    0 0 9px #39ff14,
+    0 0 20px #39ff14;
+}
+
+@media(max-width:1100px){
+  .search-wrap{
+    grid-template-columns:minmax(0,1fr) auto !important;
+  }
+  .sticky-selected{
+    grid-column:auto !important;
+  }
+  #clearAllBtnTop{
+    grid-column:1 / -1;
+    justify-self:end;
+  }
 }
 
 </style>
@@ -1341,7 +1402,14 @@ tr.active-tier td{
 <div><label>Postal / ZIP Code</label><input name="postal" type="text" required autocomplete="postal-code"></div><div><label>Country</label><input name="country" type="text" required autocomplete="country-name"></div>
 <div class="full"><label>Reseller Permit / Tax ID (optional)</label><input name="reseller_id" type="text"><div class="help">Enter a valid reseller permit / tax ID if applicable. Orders without a valid reseller permit are subject to applicable sales tax. Shipping will be added to the final invoice.</div></div>
 <div class="full"><label>Order Notes</label><textarea name="notes" placeholder="Anything we should know about this order?"></textarea></div></div></section>
-<section class="panel"><h2 class="section-title">Choose Your Stickers</h2><div class="search-wrap"><input id="searchInput" type="search" placeholder="Search stickers..."><div id="stickySelected" class="sticky-selected">SELECTED: 0</div><button type="button" id="searchClear" class="btn clear-all-btn search-clear">CLEAR</button><button type="button" id="clearAllBtnTop" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button></div><div class="toolbar"><span id="galleryStatus"></span></div>
+<section class="panel"><h2 class="section-title">Choose Your Stickers</h2><div class="search-wrap">
+  <div class="search-field-wrap">
+    <input id="searchInput" type="search" placeholder="Search stickers..." autocomplete="off">
+    <button type="button" id="searchX" class="search-x" aria-label="Clear search">×</button>
+  </div>
+  <div id="stickySelected" class="sticky-selected">SELECTED: 0</div>
+  <button type="button" id="clearAllBtnTop" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button>
+</div><div class="toolbar"><span id="galleryStatus"></span></div>
 
 <div id="gallery" class="gallery"></div>
 <div class="gallery-bottom-actions">
@@ -1365,7 +1433,7 @@ tr.active-tier td{
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),stickySelected=document.getElementById('stickySelected'),minimumNotice=document.getElementById('minimumNotice'),submitBtn=document.querySelector('.submit'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];
+document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchX=document.getElementById('searchX'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),stickySelected=document.getElementById('stickySelected'),minimumNotice=document.getElementById('minimumNotice'),submitBtn=document.querySelector('.submit'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];
 const tierRows=[
   {min:200,max:499,el:document.getElementById('tier200')},
   {min:500,max:999,el:document.getElementById('tier500')},
@@ -1562,6 +1630,7 @@ fetch('../designs.json')
 
 searchInput.oninput=()=>{
   const q=searchInput.value.toLowerCase().trim();
+  searchX.classList.toggle('visible', q.length>0);
 
   if(q){
     /* On the first keystroke of a search, remember exactly where the user was. */
@@ -1595,8 +1664,9 @@ searchInput.oninput=()=>{
   }
 };
 
-searchClear.onclick=()=>{
+searchX.onclick=()=>{
   searchInput.value='';
+  searchX.classList.remove('visible');
   filtered=all.slice();
   isSearching=false;
 
@@ -1614,10 +1684,13 @@ const clearSelections=()=>{
     return;
   }
   if(window.confirm('Remove all selected stickers?')){
+    const keepRendered=rendered;
     selections={};
     persist();
-    reset();
-    summary();
+
+    /* Re-render the visible cards immediately so quantities, green borders,
+       sticky total and mini cart all clear without a page refresh. */
+    renderToCount(keepRendered,true);
   }
 };
 if(clearAllBtnTop) clearAllBtnTop.addEventListener('click', clearSelections);
