@@ -1839,7 +1839,7 @@ orderForm.addEventListener('submit',async e=>{e.preventDefault();const t=summary
   },700);
 
   return;
-}const lines=Object.entries(selections).map(([key,qty])=>({qty,design:all.find(d=>d.key===key)})).filter(x=>x.design).sort((a,b)=>a.design.display.localeCompare(b.design.display)).map(x=>`${x.design.display} x ${x.qty}`);const u=unit(t);lines.push('','TOTAL STICKERS: '+t);if(u){lines.push('PRICE PER STICKER: $'+u.toFixed(2));lines.push('ESTIMATED TOTAL: $'+(t*u).toFixed(2)+' USD (before tax & shipping)')}itemsField.value=lines.join('\\n');persist();formStatus.textContent='Submitting order...';try{await fetch(orderForm.action,{method:'POST',mode:'no-cors',body:new FormData(orderForm)})}catch(err){console.error(err)}window.location.href='success.html'})});
+}const lines=Object.entries(selections).map(([key,qty])=>({qty,design:all.find(d=>d.key===key)})).filter(x=>x.design).sort((a,b)=>a.design.display.localeCompare(b.design.display)).map(x=>`${x.design.display} x ${x.qty}`);const u=unit(t);lines.push('','TOTAL STICKERS: '+t);if(u){lines.push('PRICE PER STICKER: $'+u.toFixed(2));lines.push('ESTIMATED TOTAL: $'+(t*u).toFixed(2)+' USD (before tax & shipping)')}itemsField.value=lines.join("\n");persist();formStatus.textContent='Submitting order...';try{await fetch(orderForm.action,{method:'POST',mode:'no-cors',body:new FormData(orderForm)})}catch(err){console.error(err)}window.location.href='success.html'})});
 </script>
 
 <div id="confirmModal" class="confirm-modal" aria-hidden="true">
