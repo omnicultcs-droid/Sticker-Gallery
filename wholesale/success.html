@@ -5,30 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wholesale Order Submitted – OMNI-CULT</title>
   <style>
-    :root{--neon:#39ff14;--text:#f5f7f5;--muted:#a4aaa4}
+    :root{--neon:#39ff14;--text:#f5f7f5}
     *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 0%,rgba(57,255,20,.09),transparent 28rem),#000;color:var(--text);font-family:Arial,Helvetica,sans-serif;text-align:center}
-    .page{width:min(820px,94%);padding:24px 0 50px}
-    .logo{display:block;width:min(760px,96%);height:auto;margin:0 auto 8px;filter:drop-shadow(0 0 6px rgba(57,255,20,.85)) drop-shadow(0 0 16px rgba(57,255,20,.45))}
-    h1{margin:0 0 16px;color:var(--neon);font-size:clamp(28px,5vw,46px);font-weight:1000;letter-spacing:.07em;text-transform:uppercase;text-shadow:0 0 12px rgba(57,255,20,.75)}
-    .card{background:linear-gradient(180deg,rgba(10,15,10,.97),rgba(3,7,3,.99));border:1px solid rgba(57,255,20,.35);border-radius:16px;padding:26px 22px;box-shadow:0 0 24px rgba(57,255,20,.09)}
-    .check{width:64px;height:64px;margin:0 auto 16px;border:2px solid var(--neon);border-radius:50%;display:grid;place-items:center;color:var(--neon);font-size:34px;font-weight:1000;box-shadow:0 0 18px rgba(57,255,20,.28)}
-    .lead{margin:0 0 10px;font-size:1.1rem;font-weight:900}
-    p{margin:8px auto;max-width:620px;color:#d7dbd7;line-height:1.55}.muted{color:var(--muted);font-size:.9rem}
-    .btn{display:inline-block;margin-top:22px;padding:13px 24px;background:var(--neon);color:#000;border:1px solid var(--neon);border-radius:999px;text-decoration:none;font-weight:1000;letter-spacing:.04em;box-shadow:0 0 14px rgba(57,255,20,.4);transition:.12s ease}
-    .btn:hover{filter:brightness(1.08);box-shadow:0 0 20px rgba(57,255,20,.58)}.btn:active{transform:scale(.98)}
+    html,body{margin:0;min-height:100%;background:#000;color:var(--text);font-family:Arial,Helvetica,sans-serif}
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      text-align:center;
+      background:radial-gradient(circle at 50% 0%,rgba(57,255,20,.08),transparent 30rem),#000;
+    }
+    .page{
+      width:min(1000px,94vw);
+      margin:0 auto;
+      padding:28px 0 48px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .logo{
+      display:block;
+      width:min(900px,92vw);
+      max-width:100%;
+      height:auto;
+      margin:0 auto 12px;
+      filter:drop-shadow(0 0 6px rgba(57,255,20,.90)) drop-shadow(0 0 18px rgba(57,255,20,.48));
+    }
+    h1{
+      width:100%;
+      margin:0 auto 22px;
+      text-align:center;
+      color:var(--neon);
+      font-size:clamp(34px,5vw,58px);
+      line-height:1.05;
+      font-weight:1000;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+      text-shadow:0 0 14px rgba(57,255,20,.78);
+    }
+    .card{
+      width:min(100%,900px);
+      margin:0 auto;
+      padding:30px 28px 32px;
+      background:linear-gradient(180deg,rgba(8,14,8,.98),rgba(2,5,2,.99));
+      border:1px solid rgba(57,255,20,.34);
+      border-radius:18px;
+      box-shadow:0 0 24px rgba(57,255,20,.08);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+    }
+    .check{
+      width:78px;height:78px;margin:0 auto 20px;border:2px solid var(--neon);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;color:var(--neon);font-size:44px;font-weight:1000;line-height:1;
+      box-shadow:0 0 20px rgba(57,255,20,.28);
+    }
+    .lead,.message{width:100%;max-width:720px;margin-left:auto;margin-right:auto;text-align:center}
+    .lead{margin-top:0;margin-bottom:14px;font-size:clamp(18px,2.2vw,24px);line-height:1.35;font-weight:900}
+    .message{margin-top:0;margin-bottom:0;color:#d8dcd8;font-size:clamp(16px,1.9vw,20px);line-height:1.55}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;margin:26px auto 0;padding:15px 28px;
+      min-width:min(100%,360px);background:var(--neon);color:#000;border:1px solid var(--neon);border-radius:999px;
+      text-decoration:none;font-size:clamp(16px,1.8vw,20px);font-weight:1000;letter-spacing:.04em;text-align:center;
+      box-shadow:0 0 16px rgba(57,255,20,.42);
+    }
+    .btn:hover{filter:brightness(1.08);box-shadow:0 0 22px rgba(57,255,20,.60)}
+    .btn:active{transform:scale(.98)}
+    @media (max-width:600px){
+      .page{width:min(96vw,1000px);padding-top:18px}
+      .card{padding:24px 16px 26px}
+      h1{letter-spacing:.045em}
+      .btn{min-width:0;width:100%;max-width:360px}
+    }
   </style>
 </head>
 <body>
   <main class="page">
     <img src="../Logo.png" class="logo" alt="OMNI-CULT">
     <h1>Order Submitted</h1>
-    <div class="card">
+    <section class="card">
       <div class="check">✓</div>
       <p class="lead">Your wholesale sticker order has been submitted successfully.</p>
-      <p>We’ll review your selections and send your final invoice soon.</p>
+      <p class="message">We’ll review your selections and send your final invoice soon.</p>
       <a href="index.html" class="btn">RETURN TO WHOLESALE FORM</a>
-    </div>
+    </section>
   </main>
 </body>
 </html>
