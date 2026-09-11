@@ -656,10 +656,67 @@ button:not(.btn-danger),
   }
 }
 
+
+/* === CLEAR BUTTONS FINAL FIX === */
+.search-wrap{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto auto !important;
+  gap:10px !important;
+  align-items:center !important;
+  position:sticky !important;
+  top:10px !important;
+  z-index:1000 !important;
+  background:#000 !important;
+  padding:8px !important;
+  border-radius:999px !important;
+}
+.search-wrap .clear-all-btn{
+  white-space:nowrap !important;
+  padding:10px 16px !important;
+  font-size:.78rem !important;
+}
+.clear-all-btn{
+  background:#071007 !important;
+  color:#39ff14 !important;
+  border:1px solid #39ff14 !important;
+  border-radius:999px !important;
+  font-weight:1000 !important;
+  box-shadow:
+    0 0 6px #39ff14,
+    0 0 13px rgba(57,255,20,.9),
+    0 0 24px rgba(57,255,20,.55) !important;
+}
+.gallery-bottom-actions{
+  position:relative !important;
+  min-height:64px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  margin:18px 0 4px !important;
+}
+.gallery-bottom-actions .load-btn{
+  margin:0 auto !important;
+}
+.gallery-bottom-actions .clear-all-btn{
+  position:absolute !important;
+  right:0 !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+}
+@media(max-width:900px){
+  .search-wrap{
+    grid-template-columns:minmax(0,1fr) auto !important;
+  }
+  .search-wrap .clear-all-btn{
+    grid-column:1 / -1 !important;
+    justify-self:end !important;
+  }
+}
+
 </style>
 </head>
 <body>
-<!-- OMNI-CULT WHOLESALE GREEN REMOVE BUTTONS TOP+BOTTOM 2026-09-10 -->
+<!-- OMNI-CULT WHOLESALE CLEAR BUTTONS FUNCTIONAL TOP+BOTTOM 2026-09-10 -->
 <div class="page">
 <header>
 <img src="../Logo.png" alt="OMNI-CULT" class="oc-logo">
@@ -675,7 +732,7 @@ button:not(.btn-danger),
 <div><label>Postal / ZIP Code</label><input name="postal" type="text" required autocomplete="postal-code"></div><div><label>Country</label><input name="country" type="text" required autocomplete="country-name"></div>
 <div class="full"><label>Reseller Permit / Tax ID (optional)</label><input name="reseller_id" type="text"><div class="help">Enter a valid reseller permit / tax ID if applicable. Orders without a valid reseller permit are subject to applicable sales tax. Shipping will be added to the final invoice.</div></div>
 <div class="full"><label>Order Notes</label><textarea name="notes" placeholder="Anything we should know about this order?"></textarea></div></div></section>
-<section class="panel"><h2 class="section-title">Choose Your Stickers</h2><div class="search-wrap"><input id="searchInput" type="search" placeholder="Search stickers..."><button type="button" id="searchClear" class="search-clear">Clear</button></div><div class="toolbar"><span id="galleryStatus"></span></div>
+<section class="panel"><h2 class="section-title">Choose Your Stickers</h2><div class="search-wrap"><input id="searchInput" type="search" placeholder="Search stickers..."><button type="button" id="searchClear" class="search-clear">Clear</button><button type="button" id="clearAllBtnTop" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button></div><div class="toolbar"><span id="galleryStatus"></span></div>
 
 <div id="gallery" class="gallery"></div>
 <div class="gallery-bottom-actions">
@@ -700,7 +757,7 @@ button:not(.btn-danger),
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtn=document.getElementById('clearAllBtn'),clearAllBtnBottom=document.getElementById('clearAllBtnBottom'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),modal=document.getElementById('modal'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];let all=[],filtered=[],rendered=0,selections={},modalKey=null,modalDesign=null;
+document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),clearAllBtnBottom=document.getElementById('clearAllBtnBottom'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),modal=document.getElementById('modal'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];let all=[],filtered=[],rendered=0,selections={},modalKey=null,modalDesign=null;
 const gf=n=>orderForm.querySelector(`[name="${n}"]`);function persist(){try{const form={};fields.forEach(n=>form[n]=gf(n)?.value||'');localStorage.setItem(STORAGE_KEY,JSON.stringify({selections,form}))}catch(e){}}function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(d.selections)selections=d.selections;if(d.form)fields.forEach(n=>{if(gf(n))gf(n).value=d.form[n]||''})}catch(e){}}fields.forEach(n=>gf(n)?.addEventListener('input',persist));
 function unit(t){if(t>=5000)return .55;if(t>=4000)return .60;if(t>=3000)return .65;if(t>=2000)return .70;if(t>=1000)return .75;if(t>=500)return .80;if(t>=200)return .90;return null}function nextTier(t){if(t<200)return[200,.90];if(t<500)return[500,.80];if(t<1000)return[1000,.75];if(t<2000)return[2000,.70];if(t<3000)return[3000,.65];if(t<4000)return[4000,.60];if(t<5000)return[5000,.55];return null}function total(){return Object.values(selections).reduce((s,n)=>s+(parseInt(n)||0),0)}
 function price(t){const u=unit(t);if(!u){priceSummary.innerHTML='<div class="price-main">Estimated total: —</div><div class="muted">Select at least 200 stickers to unlock wholesale pricing.</div>';return}let h=`<div class="price-main">Estimated total: $${(t*u).toFixed(2)} USD</div><div>${t} stickers × $${u.toFixed(2)} each</div>`;const n=nextTier(t);if(n){const d=n[0]-t;if(d>0)h+=`<div class="muted" style="margin-top:8px">Add ${d} more sticker${d===1?'':'s'} to reach ${n[0]} at $${n[1].toFixed(2)} each.</div>`}priceSummary.innerHTML=h}
@@ -733,6 +790,19 @@ fetch('../designs.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(
 searchClear.onclick=()=>{searchInput.value='';filtered=all.slice();reset();searchInput.focus()};
 loadMoreBtn.onclick=more;
 const clearSelections=()=>{
+  if(!Object.keys(selections).length){
+    return;
+  }
+  if(window.confirm('Remove all selected stickers?')){
+    selections={};
+    persist();
+    reset();
+    summary();
+  }
+};
+if(clearAllBtnTop) clearAllBtnTop.addEventListener('click', clearSelections);
+if(clearAllBtnBottom) clearAllBtnBottom.addEventListener('click', clearSelections);
+const clearSelections=()=>{
   if(!Object.keys(selections).length)return;
   if(confirm('Remove all selected stickers?')){
     selections={};
@@ -740,8 +810,8 @@ const clearSelections=()=>{
     reset();
   }
 };
-clearAllBtn.onclick=clearSelections;
-clearAllBtnBottom.onclick=clearSelections;
+
+
 orderForm.addEventListener('submit',async e=>{e.preventDefault();const t=summary();if(t<MIN_TOTAL){const msg=`A minimum of ${MIN_TOTAL} stickers is required. You currently have ${t} selected.`;alert(msg);formStatus.textContent=msg;formStatus.classList.add('error');return}const lines=Object.entries(selections).map(([key,qty])=>({qty,design:all.find(d=>d.key===key)})).filter(x=>x.design).sort((a,b)=>a.design.display.localeCompare(b.design.display)).map(x=>`${x.design.display} x ${x.qty}`);const u=unit(t);lines.push('','TOTAL STICKERS: '+t);if(u){lines.push('PRICE PER STICKER: $'+u.toFixed(2));lines.push('ESTIMATED TOTAL: $'+(t*u).toFixed(2)+' USD (before tax & shipping)')}itemsField.value=lines.join('\\n');persist();formStatus.textContent='Submitting order...';try{await fetch(orderForm.action,{method:'POST',mode:'no-cors',body:new FormData(orderForm)})}catch(err){console.error(err)}window.location.href='success.html'})});
 </script>
 </body></html>
