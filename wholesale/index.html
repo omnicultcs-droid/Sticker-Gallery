@@ -1279,8 +1279,8 @@ tr.active-tier td{
 
 /* === FINAL HEADER COPY / WIDTH TWEAK === */
 .instruction-box{
-  width:min(1120px, 92vw) !important;
-  max-width:1120px !important;
+  width:min(1240px, 94vw) !important;
+  max-width:1240px !important;
 }
 
 /* Keep the three desktop instruction lines on one line where space allows */
@@ -1292,6 +1292,30 @@ tr.active-tier td{
   .instruction-step{
     white-space:normal !important;
   }
+}
+
+
+/* === FINAL SEARCH POLISH === */
+#search{
+  padding-right:54px !important;
+}
+#search::-webkit-search-cancel-button{
+  -webkit-appearance:none !important;
+  appearance:none !important;
+  width:30px !important;
+  height:30px !important;
+  cursor:pointer !important;
+  opacity:1 !important;
+  background:
+    linear-gradient(45deg, transparent 43%, #071007 43%, #071007 57%, transparent 57%),
+    linear-gradient(-45deg, transparent 43%, #071007 43%, #071007 57%, transparent 57%),
+    #39ff14 !important;
+  border-radius:50% !important;
+  box-shadow:0 0 7px #39ff14, 0 0 14px rgba(57,255,20,.85) !important;
+}
+#search::-webkit-search-cancel-button:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 10px #39ff14, 0 0 20px #39ff14 !important;
 }
 
 </style>
