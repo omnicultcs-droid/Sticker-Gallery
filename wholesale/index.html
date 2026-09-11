@@ -737,10 +737,101 @@ button:not(.btn-danger),
     0 0 30px rgba(57,255,20,.72) !important;
 }
 
+
+/* === MINI CART THEME REWORK === */
+.selection-list{
+  max-height:190px !important;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  padding-right:14px !important;
+  scrollbar-width:thin;
+  scrollbar-color:#39ff14 #071007;
+}
+
+/* Chrome / Edge / Safari */
+.selection-list::-webkit-scrollbar{
+  width:10px;
+}
+.selection-list::-webkit-scrollbar-track{
+  background:#071007;
+  border-radius:999px;
+  box-shadow:inset 0 0 6px rgba(57,255,20,.18);
+}
+.selection-list::-webkit-scrollbar-thumb{
+  background:#39ff14;
+  border:2px solid #071007;
+  border-radius:999px;
+  box-shadow:
+    0 0 6px #39ff14,
+    0 0 12px rgba(57,255,20,.75);
+}
+.selection-list::-webkit-scrollbar-thumb:hover{
+  background:#66ff4a;
+  box-shadow:
+    0 0 8px #39ff14,
+    0 0 16px rgba(57,255,20,.95);
+}
+
+.selection-row{
+  padding-right:4px !important;
+}
+
+.selection-controls{
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding-right:2px !important;
+}
+
+/* Make ALL mini-cart buttons solid neon green */
+.selection-controls .mini,
+.selection-controls .mini-remove{
+  width:28px !important;
+  height:28px !important;
+  padding:0 !important;
+  display:grid !important;
+  place-items:center !important;
+  border:1px solid #39ff14 !important;
+  border-radius:999px !important;
+  background:#39ff14 !important;
+  color:#000 !important;
+  font-size:.9rem !important;
+  font-weight:1000 !important;
+  line-height:1 !important;
+  box-shadow:
+    0 0 5px #39ff14,
+    0 0 11px rgba(57,255,20,.9),
+    0 0 18px rgba(57,255,20,.6) !important;
+}
+
+.selection-controls .mini:hover,
+.selection-controls .mini-remove:hover{
+  background:#66ff4a !important;
+  color:#000 !important;
+  box-shadow:
+    0 0 7px #39ff14,
+    0 0 15px #39ff14,
+    0 0 24px rgba(57,255,20,.9) !important;
+}
+
+/* Remove any inherited red styling from the X button */
+.selection-controls .mini-remove{
+  border-color:#39ff14 !important;
+  color:#000 !important;
+}
+
+/* Keep quantity readable between the solid buttons */
+.selection-controls strong{
+  min-width:18px;
+  text-align:center;
+  color:#fff;
+  font-weight:1000;
+}
+
 </style>
 </head>
 <body>
-<!-- OMNI-CULT WHOLESALE GALLERY RESTORED + MATCHING CLEAR BUTTON 2026-09-10 -->
+<!-- OMNI-CULT WHOLESALE MINI CART SOLID GREEN + GREEN SCROLLBAR 2026-09-10 -->
 <div class="page">
 <header>
 <img src="../Logo.png" alt="OMNI-CULT" class="oc-logo">
