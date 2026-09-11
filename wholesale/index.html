@@ -1031,7 +1031,7 @@ button:not(.btn-danger),
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];let all=[],filtered=[],rendered=0,browseRendered=PAGE_SIZE,isSearching=false,selections={},modalKey=null,modalDesign=null;
+document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];let all=[],filtered=[],rendered=0,browseRendered=PAGE_SIZE,isSearching=false,browseScrollY=0,selections={},modalKey=null,modalDesign=null;
 const gf=n=>orderForm.querySelector(`[name="${n}"]`);function persist(){try{const form={};fields.forEach(n=>form[n]=gf(n)?.value||'');localStorage.setItem(STORAGE_KEY,JSON.stringify({selections,form}))}catch(e){}}function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(d.selections)selections=d.selections;if(d.form)fields.forEach(n=>{if(gf(n))gf(n).value=d.form[n]||''})}catch(e){}}fields.forEach(n=>gf(n)?.addEventListener('input',persist));
 function unit(t){if(t>=5000)return .55;if(t>=4000)return .60;if(t>=3000)return .65;if(t>=2000)return .70;if(t>=1000)return .75;if(t>=500)return .80;if(t>=200)return .90;return null}function nextTier(t){if(t<200)return[200,.90];if(t<500)return[500,.80];if(t<1000)return[1000,.75];if(t<2000)return[2000,.70];if(t<3000)return[3000,.65];if(t<4000)return[4000,.60];if(t<5000)return[5000,.55];return null}function total(){return Object.values(selections).reduce((s,n)=>s+(parseInt(n)||0),0)}
 function price(t){const u=unit(t);if(!u){priceSummary.innerHTML='<div class="price-main">Estimated total: —</div><div class="muted">Select at least 200 stickers to unlock wholesale pricing.</div>';return}let h=`<div class="price-main">Estimated total: $${(t*u).toFixed(2)} USD</div><div>${t} stickers × $${u.toFixed(2)} each</div>`;const n=nextTier(t);if(n){const d=n[0]-t;if(d>0)h+=`<div class="muted" style="margin-top:8px">Add ${d} more sticker${d===1?'':'s'} to reach ${n[0]} at $${n[1].toFixed(2)} each.</div>`}priceSummary.innerHTML=h}
@@ -1179,18 +1179,32 @@ searchInput.oninput=()=>{
   const q=searchInput.value.toLowerCase().trim();
 
   if(q){
-    /* Remember how far down the normal gallery had been loaded before searching. */
+    /* On the first keystroke of a search, remember exactly where the user was. */
     if(!isSearching){
       browseRendered=Math.max(rendered,browseRendered,PAGE_SIZE);
+      browseScrollY=window.scrollY;
       isSearching=true;
     }
+
     filtered=all.filter(d=>d.name.includes(q));
-    renderToCount(PAGE_SIZE,true);
+
+    /* Re-render search results, then jump to the top of the sticker section/search bar. */
+    renderToCount(PAGE_SIZE,false);
+    requestAnimationFrame(()=>{
+      const topTarget=document.querySelector('.panel .section-title') || document.querySelector('.search-wrap');
+      if(topTarget){
+        const y=topTarget.getBoundingClientRect().top + window.scrollY - 16;
+        window.scrollTo({top:y,left:0,behavior:'auto'});
+      }
+    });
   }else{
-    /* Clearing search restores the same amount of the main gallery instead of restarting at the beginning. */
+    /* Deleting the search text entirely restores the browse gallery and old scroll position. */
     filtered=all.slice();
     isSearching=false;
-    renderToCount(browseRendered,true);
+    renderToCount(browseRendered,false);
+    requestAnimationFrame(()=>{
+      window.scrollTo({top:browseScrollY,left:0,behavior:'auto'});
+    });
   }
 };
 
@@ -1198,8 +1212,13 @@ searchClear.onclick=()=>{
   searchInput.value='';
   filtered=all.slice();
   isSearching=false;
-  renderToCount(browseRendered,true);
-  searchInput.focus({preventScroll:true});
+
+  /* Restore both the previous loaded count and the exact previous scroll position. */
+  renderToCount(browseRendered,false);
+  requestAnimationFrame(()=>{
+    window.scrollTo({top:browseScrollY,left:0,behavior:'auto'});
+    searchInput.focus({preventScroll:true});
+  });
 };
 
 loadMoreBtn.onclick=more;
