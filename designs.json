@@ -625,9 +625,9 @@
         "file":  "AFI (Black Sails In The Sunset).jpg"
     },
     {
-        "id":  "AFI (East Bay Hard Core)",
-        "name":  "AFI (East Bay Hard Core)",
-        "file":  "AFI (East Bay Hard Core).jpg"
+        "id":  "AFI (East Bay Hardcore)",
+        "name":  "AFI (East Bay Hardcore)",
+        "file":  "AFI (East Bay Hardcore).jpg"
     },
     {
         "id":  "AFI (Shut Your Mouth And Open Your Eyes)",
@@ -680,9 +680,9 @@
         "file":  "Afsky.jpg"
     },
     {
-        "id":  "After The Burial",
-        "name":  "After The Burial",
-        "file":  "After The Burial.jpg"
+        "id":  "After The Burial (Snake)",
+        "name":  "After The Burial (Snake)",
+        "file":  "After The Burial (Snake).jpg"
     },
     {
         "id":  "Against All Authority",
@@ -715,9 +715,9 @@
         "file":  "Agathocles (Yellow Skull).jpg"
     },
     {
-        "id":  "Agent Orange",
-        "name":  "Agent Orange",
-        "file":  "Agent Orange.jpg"
+        "id":  "Agent Orange (Logo)",
+        "name":  "Agent Orange (Logo)",
+        "file":  "Agent Orange (Logo).jpg"
     },
     {
         "id":  "Aggrolites",
@@ -730,9 +730,14 @@
         "file":  "Agnostic Front.jpg"
     },
     {
-        "id":  "Agonist",
-        "name":  "Agonist",
-        "file":  "Agonist.jpg"
+        "id":  "Agonist (Distressed Logo)",
+        "name":  "Agonist (Distressed Logo)",
+        "file":  "Agonist (Distressed Logo).jpg"
+    },
+    {
+        "id":  "Agonist (Logo)",
+        "name":  "Agonist (Logo)",
+        "file":  "Agonist (Logo).jpg"
     },
     {
         "id":  "Agoraphobic Nosebleed (Altered States Of America)",
@@ -1670,9 +1675,9 @@
         "file":  "Artimus Pyle.jpg"
     },
     {
-        "id":  "As Blood Runs Black",
-        "name":  "As Blood Runs Black",
-        "file":  "As Blood Runs Black.jpg"
+        "id":  "As Blood Runs Black (Logo)",
+        "name":  "As Blood Runs Black (Logo)",
+        "file":  "As Blood Runs Black (Logo).jpg"
     },
     {
         "id":  "As I Lay Dying",
@@ -1715,9 +1720,9 @@
         "file":  "Asking Alexandria (Shaman).jpg"
     },
     {
-        "id":  "Asphyx",
-        "name":  "Asphyx",
-        "file":  "Asphyx.jpg"
+        "id":  "Asphyx (Logo)",
+        "name":  "Asphyx (Logo)",
+        "file":  "Asphyx (Logo).jpg"
     },
     {
         "id":  "Assassin",
@@ -1765,9 +1770,9 @@
         "file":  "At The Drive-In (Rolodex Propaganda).jpg"
     },
     {
-        "id":  "At The Gates",
-        "name":  "At The Gates",
-        "file":  "At The Gates.jpg"
+        "id":  "At The Gates (Tall Logo)",
+        "name":  "At The Gates (Tall Logo)",
+        "file":  "At The Gates (Tall Logo).jpg"
     },
     {
         "id":  "Ataraxy",
@@ -1785,9 +1790,9 @@
         "file":  "Ataris (Star Logo).jpg"
     },
     {
-        "id":  "Atheist",
-        "name":  "Atheist",
-        "file":  "Atheist.jpg"
+        "id":  "Atheist (Logo)",
+        "name":  "Atheist (Logo)",
+        "file":  "Atheist (Logo).jpg"
     },
     {
         "id":  "Atlantean Kodex (The Annihilation Of Bavaria)",
@@ -1950,9 +1955,9 @@
         "file":  "Autonomads.jpg"
     },
     {
-        "id":  "Autopsy",
-        "name":  "Autopsy",
-        "file":  "Autopsy.jpg"
+        "id":  "Autopsy (Logo)",
+        "name":  "Autopsy (Logo)",
+        "file":  "Autopsy (Logo).jpg"
     },
     {
         "id":  "Avail",
@@ -2545,9 +2550,9 @@
         "file":  "Begging for Incest.jpg"
     },
     {
-        "id":  "Behemoth",
-        "name":  "Behemoth",
-        "file":  "Behemoth.jpg"
+        "id":  "Behemoth (Logo)",
+        "name":  "Behemoth (Logo)",
+        "file":  "Behemoth (Logo).jpg"
     },
     {
         "id":  "Beherit",
@@ -2900,9 +2905,9 @@
         "file":  "Black Crowes.jpg"
     },
     {
-        "id":  "Black Dahlia Murder, The",
-        "name":  "Black Dahlia Murder, The",
-        "file":  "Black Dahlia Murder, The.jpg"
+        "id":  "Black Dahlia Murder (Logo)",
+        "name":  "Black Dahlia Murder (Logo)",
+        "file":  "Black Dahlia Murder (Logo).jpg"
     },
     {
         "id":  "Black Fag",
@@ -3250,9 +3255,9 @@
         "file":  "Blood For Blood.jpg"
     },
     {
-        "id":  "Blood Incantation",
-        "name":  "Blood Incantation",
-        "file":  "Blood Incantation.jpg"
+        "id":  "Blood Incantation (Interdimensional Extinction)",
+        "name":  "Blood Incantation (Interdimensional Extinction)",
+        "file":  "Blood Incantation (Interdimensional Extinction).jpg"
     },
     {
         "id":  "Blood On The Dance Floor",
@@ -4005,14 +4010,14 @@
         "file":  "Candlebox.jpg"
     },
     {
+        "id":  "Candlemass (Epicus Doomicus Metallicus)",
+        "name":  "Candlemass (Epicus Doomicus Metallicus)",
+        "file":  "Candlemass (Epicus Doomicus Metallicus).jpg"
+    },
+    {
         "id":  "Candlemass (Flame Logo)",
         "name":  "Candlemass (Flame Logo)",
         "file":  "Candlemass (Flame Logo).jpg"
-    },
-    {
-        "id":  "Candlemass (Logo)",
-        "name":  "Candlemass (Logo)",
-        "file":  "Candlemass (Logo).jpg"
     },
     {
         "id":  "Cannibal Corpse (Born In A Casket)",
@@ -4275,9 +4280,14 @@
         "file":  "Cattle Decapitation (Karma Bloody Karma).jpg"
     },
     {
-        "id":  "Cattle Decapitation (Logo)",
-        "name":  "Cattle Decapitation (Logo)",
-        "file":  "Cattle Decapitation (Logo).jpg"
+        "id":  "Cattle Decapitation (Modern Logo)",
+        "name":  "Cattle Decapitation (Modern Logo)",
+        "file":  "Cattle Decapitation (Modern Logo).jpg"
+    },
+    {
+        "id":  "Cattle Decapitation (Original Logo)",
+        "name":  "Cattle Decapitation (Original Logo)",
+        "file":  "Cattle Decapitation (Original Logo).jpg"
     },
     {
         "id":  "Caustic Christ",
@@ -4570,9 +4580,9 @@
         "file":  "Cheetah Chrome Motherfuckers.jpg"
     },
     {
-        "id":  "Chelsea Grin",
-        "name":  "Chelsea Grin",
-        "file":  "Chelsea Grin.jpg"
+        "id":  "Chelsea Grin (Logo)",
+        "name":  "Chelsea Grin (Logo)",
+        "file":  "Chelsea Grin (Logo).jpg"
     },
     {
         "id":  "Chelsea",
@@ -4630,9 +4640,9 @@
         "file":  "Childish Gambino.jpg"
     },
     {
-        "id":  "Children Of Bodom",
-        "name":  "Children Of Bodom",
-        "file":  "Children Of Bodom.jpg"
+        "id":  "Children Of Bodom (Logo)",
+        "name":  "Children Of Bodom (Logo)",
+        "file":  "Children Of Bodom (Logo).jpg"
     },
     {
         "id":  "Children Of Nova",
@@ -5375,9 +5385,9 @@
         "file":  "Crack Rock Steady Seven.jpg"
     },
     {
-        "id":  "Cradle Of Filth",
-        "name":  "Cradle Of Filth",
-        "file":  "Cradle Of Filth.jpg"
+        "id":  "Cradle Of Filth (Logo)",
+        "name":  "Cradle Of Filth (Logo)",
+        "file":  "Cradle Of Filth (Logo).jpg"
     },
     {
         "id":  "Cramps (A Date With Elvis)",
@@ -6005,9 +6015,9 @@
         "file":  "Dark Throne (Unholy Black Metal).jpg"
     },
     {
-        "id":  "Dark Tranquility",
-        "name":  "Dark Tranquility",
-        "file":  "Dark Tranquility.jpg"
+        "id":  "Dark Tranquility (Logo)",
+        "name":  "Dark Tranquility (Logo)",
+        "file":  "Dark Tranquility (Logo).jpg"
     },
     {
         "id":  "Darkest Hour",
@@ -6415,9 +6425,9 @@
         "file":  "Deathwish Logo (Skateboard Brand).jpg"
     },
     {
-        "id":  "Decapitated",
-        "name":  "Decapitated",
-        "file":  "Decapitated.jpg"
+        "id":  "Decapitated (Logo)",
+        "name":  "Decapitated (Logo)",
+        "file":  "Decapitated (Logo).jpg"
     },
     {
         "id":  "Decemberists, The",
@@ -6835,9 +6845,9 @@
         "file":  "Destroy.jpg"
     },
     {
-        "id":  "Deströyer 666",
-        "name":  "Deströyer 666",
-        "file":  "Deströyer 666.jpg"
+        "id":  "Destroyer 666 (Logo)",
+        "name":  "Destroyer 666 (Logo)",
+        "file":  "Destroyer 666 (Logo).jpg"
     },
     {
         "id":  "Destruction",
@@ -6965,9 +6975,9 @@
         "file":  "DFL (Dead Fucking Last).jpg"
     },
     {
-        "id":  "DI",
-        "name":  "DI",
-        "file":  "DI.jpg"
+        "id":  "DI (Logo)",
+        "name":  "DI (Logo)",
+        "file":  "DI (Logo).jpg"
     },
     {
         "id":  "Diamond Head",
@@ -7300,9 +7310,9 @@
         "file":  "Distant.jpg"
     },
     {
-        "id":  "Distillers, The",
-        "name":  "Distillers, The",
-        "file":  "Distillers, The.jpg"
+        "id":  "Distillers (Logo)",
+        "name":  "Distillers (Logo)",
+        "file":  "Distillers (Logo).jpg"
     },
     {
         "id":  "Disturbed",
@@ -8090,9 +8100,9 @@
         "file":  "Edgar Winter Group, The.jpg"
     },
     {
-        "id":  "Edge Of Sanity",
-        "name":  "Edge Of Sanity",
-        "file":  "Edge Of Sanity.jpg"
+        "id":  "Edge Of Sanity (Logo)",
+        "name":  "Edge Of Sanity (Logo)",
+        "file":  "Edge Of Sanity (Logo).jpg"
     },
     {
         "id":  "Effigies",
@@ -8890,9 +8900,9 @@
         "file":  "F.U.\u0027s (Kill For Christ).jpg"
     },
     {
-        "id":  "Face To Face",
-        "name":  "Face To Face",
-        "file":  "Face To Face.jpg"
+        "id":  "Face To Face (So Cal)",
+        "name":  "Face To Face (So Cal)",
+        "file":  "Face To Face (So Cal).jpg"
     },
     {
         "id":  "Face Yourself",
@@ -9820,9 +9830,9 @@
         "file":  "Gasp.jpg"
     },
     {
-        "id":  "Gatecreeper",
-        "name":  "Gatecreeper",
-        "file":  "Gatecreeper.jpg"
+        "id":  "Gatecreeper (Skeleton Warriors)",
+        "name":  "Gatecreeper (Skeleton Warriors)",
+        "file":  "Gatecreeper (Skeleton Warriors).jpg"
     },
     {
         "id":  "Gauze",
@@ -10410,9 +10420,9 @@
         "file":  "Gorgoroth (Under The Sign Of Hell).jpg"
     },
     {
-        "id":  "Gorguts",
-        "name":  "Gorguts",
-        "file":  "Gorguts.jpg"
+        "id":  "Gorguts (Logo)",
+        "name":  "Gorguts (Logo)",
+        "file":  "Gorguts (Logo).jpg"
     },
     {
         "id":  "Gorilla Biscuits (GB Logo)",
@@ -11130,9 +11140,9 @@
         "file":  "Heatseeker.jpg"
     },
     {
-        "id":  "Heaven Shall Burn",
-        "name":  "Heaven Shall Burn",
-        "file":  "Heaven Shall Burn.jpg"
+        "id":  "Heaven Shall Burn (Invictus)",
+        "name":  "Heaven Shall Burn (Invictus)",
+        "file":  "Heaven Shall Burn (Invictus).jpg"
     },
     {
         "id":  "Heavy Heavy Low Low",
@@ -11165,14 +11175,14 @@
         "file":  "Heist.jpg"
     },
     {
-        "id":  "Hell Hammer",
-        "name":  "Hell Hammer",
-        "file":  "Hell Hammer.jpg"
-    },
-    {
         "id":  "Hellbastard",
         "name":  "Hellbastard",
         "file":  "Hellbastard.jpg"
+    },
+    {
+        "id":  "Hellhammer (Satanic Rites)",
+        "name":  "Hellhammer (Satanic Rites)",
+        "file":  "Hellhammer (Satanic Rites).jpg"
     },
     {
         "id":  "Hellkrusher",
@@ -11690,9 +11700,9 @@
         "file":  "imissyoualready.jpg"
     },
     {
-        "id":  "Immolation",
-        "name":  "Immolation",
-        "file":  "Immolation.jpg"
+        "id":  "Immolation (Logo)",
+        "name":  "Immolation (Logo)",
+        "file":  "Immolation (Logo).jpg"
     },
     {
         "id":  "Immortal (Classic Logo)",
@@ -11750,9 +11760,9 @@
         "file":  "Impureza.jpg"
     },
     {
-        "id":  "In Flames",
-        "name":  "In Flames",
-        "file":  "In Flames.jpg"
+        "id":  "In Flames (Logo)",
+        "name":  "In Flames (Logo)",
+        "file":  "In Flames (Logo).jpg"
     },
     {
         "id":  "In This Moment",
@@ -13445,9 +13455,9 @@
         "file":  "Lady Gaga (Metal Logo).jpg"
     },
     {
-        "id":  "Lagwagon",
-        "name":  "Lagwagon",
-        "file":  "Lagwagon.jpg"
+        "id":  "Lagwagon (Logo)",
+        "name":  "Lagwagon (Logo)",
+        "file":  "Lagwagon (Logo).jpg"
     },
     {
         "id":  "Lakai Logo (Skateboard Brand)",
@@ -13465,9 +13475,9 @@
         "file":  "Lalo Mora.jpg"
     },
     {
-        "id":  "Lamb Of God",
-        "name":  "Lamb Of God",
-        "file":  "Lamb Of God.jpg"
+        "id":  "Lamb Of God (Wrath Logo)",
+        "name":  "Lamb Of God (Wrath Logo)",
+        "file":  "Lamb Of God (Wrath Logo).jpg"
     },
     {
         "id":  "Lamborghini (Vehicle Brand)",
@@ -14280,9 +14290,9 @@
         "file":  "Mac Miller.jpg"
     },
     {
-        "id":  "Macabre",
-        "name":  "Macabre",
-        "file":  "Macabre.jpg"
+        "id":  "Macabre (Logo)",
+        "name":  "Macabre (Logo)",
+        "file":  "Macabre (Logo).jpg"
     },
     {
         "id":  "Macc Lads",
@@ -14380,9 +14390,9 @@
         "file":  "Make Authority History (Political Protest).jpg"
     },
     {
-        "id":  "Malevolent Creation",
-        "name":  "Malevolent Creation",
-        "file":  "Malevolent Creation.jpg"
+        "id":  "Malevolent Creation (Logo)",
+        "name":  "Malevolent Creation (Logo)",
+        "file":  "Malevolent Creation (Logo).jpg"
     },
     {
         "id":  "Malice",
@@ -14545,9 +14555,9 @@
         "file":  "Masta Killa.jpg"
     },
     {
-        "id":  "Master",
-        "name":  "Master",
-        "file":  "Master.jpg"
+        "id":  "Master (Logo)",
+        "name":  "Master (Logo)",
+        "file":  "Master (Logo).jpg"
     },
     {
         "id":  "Mastodon",
@@ -15240,9 +15250,9 @@
         "file":  "Misery (Skull).jpg"
     },
     {
-        "id":  "Misery Index",
-        "name":  "Misery Index",
-        "file":  "Misery Index.jpg"
+        "id":  "Misery Index (Logo)",
+        "name":  "Misery Index (Logo)",
+        "file":  "Misery Index (Logo).jpg"
     },
     {
         "id":  "Misfits (Crimson Ghost)",
@@ -15370,9 +15380,9 @@
         "file":  "Molchat Doma.jpg"
     },
     {
-        "id":  "Molder",
-        "name":  "Molder",
-        "file":  "Molder.jpg"
+        "id":  "Molder (Bug Creature)",
+        "name":  "Molder (Bug Creature)",
+        "file":  "Molder (Bug Creature).jpg"
     },
     {
         "id":  "Moldy Peaches, The",
@@ -15560,9 +15570,9 @@
         "file":  "Morrow.jpg"
     },
     {
-        "id":  "Mortician",
-        "name":  "Mortician",
-        "file":  "Mortician.jpg"
+        "id":  "Mortician (Logo)",
+        "name":  "Mortician (Logo)",
+        "file":  "Mortician (Logo).jpg"
     },
     {
         "id":  "Mortiferum",
@@ -16625,9 +16635,9 @@
         "file":  "Nuns, The.jpg"
     },
     {
-        "id":  "Nunslaughter",
-        "name":  "Nunslaughter",
-        "file":  "Nunslaughter.jpg"
+        "id":  "Nunslaughter (Logo)",
+        "name":  "Nunslaughter (Logo)",
+        "file":  "Nunslaughter (Logo).jpg"
     },
     {
         "id":  "Nux Vomica",
@@ -17415,9 +17425,9 @@
         "file":  "Penetration.jpg"
     },
     {
-        "id":  "Pennywise",
-        "name":  "Pennywise",
-        "file":  "Pennywise.jpg"
+        "id":  "Pennywise (Logo)",
+        "name":  "Pennywise (Logo)",
+        "file":  "Pennywise (Logo).jpg"
     },
     {
         "id":  "Pentagram (Relentless)",
@@ -18220,9 +18230,9 @@
         "file":  "Pulp.jpg"
     },
     {
-        "id":  "Pungent Stench",
-        "name":  "Pungent Stench",
-        "file":  "Pungent Stench.jpg"
+        "id":  "Pungent Stench (Logo)",
+        "name":  "Pungent Stench (Logo)",
+        "file":  "Pungent Stench (Logo).jpg"
     },
     {
         "id":  "Purity Ring",
@@ -19335,9 +19345,9 @@
         "file":  "Sabaton.jpg"
     },
     {
-        "id":  "Sabbat",
-        "name":  "Sabbat",
-        "file":  "Sabbat.jpg"
+        "id":  "Sabbat (Logo)",
+        "name":  "Sabbat (Logo)",
+        "file":  "Sabbat (Logo).jpg"
     },
     {
         "id":  "Sabotage",
@@ -19530,9 +19540,9 @@
         "file":  "Saratoga (Agotaras).jpg"
     },
     {
-        "id":  "Sarcofago",
-        "name":  "Sarcofago",
-        "file":  "Sarcofago.jpg"
+        "id":  "Sarcofago (Logo)",
+        "name":  "Sarcofago (Logo)",
+        "file":  "Sarcofago (Logo).jpg"
     },
     {
         "id":  "Sargeist",
@@ -20200,9 +20210,9 @@
         "file":  "Sisters Of Mercy (Two Circles).jpg"
     },
     {
-        "id":  "Six Feet Under",
-        "name":  "Six Feet Under",
-        "file":  "Six Feet Under.jpg"
+        "id":  "Six Feet Under (Logo)",
+        "name":  "Six Feet Under (Logo)",
+        "file":  "Six Feet Under (Logo).jpg"
     },
     {
         "id":  "Sixteen Horsepower",
@@ -20345,9 +20355,9 @@
         "file":  "Skinhead (Band).jpg"
     },
     {
-        "id":  "Skinless",
-        "name":  "Skinless",
-        "file":  "Skinless.jpg"
+        "id":  "Skinless (Logo)",
+        "name":  "Skinless (Logo)",
+        "file":  "Skinless (Logo).jpg"
     },
     {
         "id":  "Skinny Puppy",
@@ -20840,9 +20850,9 @@
         "file":  "Soilent Green (Sewn Mouth Secrets).jpg"
     },
     {
-        "id":  "Soilwork",
-        "name":  "Soilwork",
-        "file":  "Soilwork.jpg"
+        "id":  "Soilwork (The Sledgehammer Files)",
+        "name":  "Soilwork (The Sledgehammer Files)",
+        "file":  "Soilwork (The Sledgehammer Files).jpg"
     },
     {
         "id":  "Soja (Born In Babylon)",
@@ -20875,9 +20885,9 @@
         "file":  "Son Of Sam.jpg"
     },
     {
-        "id":  "Sonic Syndicate",
-        "name":  "Sonic Syndicate",
-        "file":  "Sonic Syndicate.jpg"
+        "id":  "Sonic Syndicate (Only Inhuman)",
+        "name":  "Sonic Syndicate (Only Inhuman)",
+        "file":  "Sonic Syndicate (Only Inhuman).jpg"
     },
     {
         "id":  "Sonic Youth (Goo)",
@@ -23100,9 +23110,9 @@
         "file":  "Usipian.jpg"
     },
     {
-        "id":  "Vader",
-        "name":  "Vader",
-        "file":  "Vader.jpg"
+        "id":  "Vader (Logo)",
+        "name":  "Vader (Logo)",
+        "file":  "Vader (Logo).jpg"
     },
     {
         "id":  "Vain",
@@ -23130,9 +23140,9 @@
         "file":  "Van Morrison.jpg"
     },
     {
-        "id":  "Vandals, The (Peace Thru Vandalism)",
-        "name":  "Vandals, The (Peace Thru Vandalism)",
-        "file":  "Vandals, The (Peace Thru Vandalism).jpg"
+        "id":  "Vandals (Peace Thru Vandalism)",
+        "name":  "Vandals (Peace Thru Vandalism)",
+        "file":  "Vandals (Peace Thru Vandalism).jpg"
     },
     {
         "id":  "Vans Off The Wall (Skateboard Brand)",
@@ -23395,9 +23405,9 @@
         "file":  "Vision Street Wear Logo (Skateboard Brand).jpg"
     },
     {
-        "id":  "Vital Remains",
-        "name":  "Vital Remains",
-        "file":  "Vital Remains.jpg"
+        "id":  "Vital Remains (Logo)",
+        "name":  "Vital Remains (Logo)",
+        "file":  "Vital Remains (Logo).jpg"
     },
     {
         "id":  "Vitamin X",
