@@ -918,6 +918,76 @@ button:not(.btn-danger),
   height:34px !important;
 }
 
+
+/* === MINI CART MATCHES STICKER-CARD CONTROLS === */
+.selection-controls{
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding-right:6px !important;
+}
+
+/* Same dimensions and pill shape as the +/- buttons on the sticker cards */
+.selection-controls .qty-btn{
+  width:34px !important;
+  min-width:34px !important;
+  height:26px !important;
+  min-height:26px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:999px !important;
+  background:#39ff14 !important;
+  color:#000 !important;
+  font-size:1.15rem !important;
+  line-height:1 !important;
+  font-weight:1000 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  box-shadow:
+    0 0 5px #39ff14,
+    0 0 11px rgba(57,255,20,.9),
+    0 0 18px rgba(57,255,20,.62) !important;
+}
+
+.selection-controls .qty-btn:hover{
+  background:#66ff4a !important;
+  box-shadow:
+    0 0 7px #39ff14,
+    0 0 15px #39ff14,
+    0 0 24px rgba(57,255,20,.9) !important;
+}
+
+/* Editable quantity centered between the matching buttons */
+.mini-qty-input{
+  width:42px !important;
+  height:26px !important;
+  padding:0 3px !important;
+  border:1px solid #39ff14 !important;
+  border-radius:7px !important;
+  background:#020402 !important;
+  color:#fff !important;
+  text-align:center !important;
+  font-size:.9rem !important;
+  font-weight:1000 !important;
+  outline:none !important;
+  box-shadow:0 0 5px rgba(57,255,20,.45) !important;
+  -moz-appearance:textfield;
+}
+.mini-qty-input:focus{
+  box-shadow:0 0 7px #39ff14,0 0 13px rgba(57,255,20,.78) !important;
+}
+.mini-qty-input::-webkit-outer-spin-button,
+.mini-qty-input::-webkit-inner-spin-button{
+  -webkit-appearance:none;
+  margin:0;
+}
+
+/* Keep the green scrollbar from covering the control glow */
+.selection-list{
+  padding-right:18px !important;
+}
+
 </style>
 </head>
 <body>
@@ -961,12 +1031,51 @@ button:not(.btn-danger),
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),modal=document.getElementById('modal'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];let all=[],filtered=[],rendered=0,selections={},modalKey=null,modalDesign=null;
+document.addEventListener('DOMContentLoaded',()=>{const PAGE_SIZE=32,STORAGE_KEY='omnicult_wholesale_order_v2',MIN_TOTAL=200;const gallery=document.getElementById('gallery'),loadMoreBtn=document.getElementById('loadMoreBtn'),searchInput=document.getElementById('searchInput'),searchClear=document.getElementById('searchClear'),itemsField=document.getElementById('itemsField'),formStatus=document.getElementById('formStatus'),galleryStatus=document.getElementById('galleryStatus'),clearAllBtnTop=document.getElementById('clearAllBtnTop'),orderForm=document.getElementById('orderForm'),selectionSummary=document.getElementById('selectionSummary'),priceSummary=document.getElementById('priceSummary'),selectionList=document.getElementById('selectionList'),modal=document.getElementById('modal'),modalBox=document.querySelector('.modal-box'),modalImg=document.getElementById('modalImg'),modalName=document.getElementById('modalName'),modalClose=document.getElementById('modalClose'),modalMinus=document.getElementById('modalMinus'),modalPlus=document.getElementById('modalPlus'),modalQty=document.getElementById('modalQty');const fields=['name','email','address','city','state','postal','country','reseller_id','notes'];let all=[],filtered=[],rendered=0,browseRendered=PAGE_SIZE,isSearching=false,selections={},modalKey=null,modalDesign=null;
 const gf=n=>orderForm.querySelector(`[name="${n}"]`);function persist(){try{const form={};fields.forEach(n=>form[n]=gf(n)?.value||'');localStorage.setItem(STORAGE_KEY,JSON.stringify({selections,form}))}catch(e){}}function load(){try{const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');if(d.selections)selections=d.selections;if(d.form)fields.forEach(n=>{if(gf(n))gf(n).value=d.form[n]||''})}catch(e){}}fields.forEach(n=>gf(n)?.addEventListener('input',persist));
 function unit(t){if(t>=5000)return .55;if(t>=4000)return .60;if(t>=3000)return .65;if(t>=2000)return .70;if(t>=1000)return .75;if(t>=500)return .80;if(t>=200)return .90;return null}function nextTier(t){if(t<200)return[200,.90];if(t<500)return[500,.80];if(t<1000)return[1000,.75];if(t<2000)return[2000,.70];if(t<3000)return[3000,.65];if(t<4000)return[4000,.60];if(t<5000)return[5000,.55];return null}function total(){return Object.values(selections).reduce((s,n)=>s+(parseInt(n)||0),0)}
 function price(t){const u=unit(t);if(!u){priceSummary.innerHTML='<div class="price-main">Estimated total: —</div><div class="muted">Select at least 200 stickers to unlock wholesale pricing.</div>';return}let h=`<div class="price-main">Estimated total: $${(t*u).toFixed(2)} USD</div><div>${t} stickers × $${u.toFixed(2)} each</div>`;const n=nextTier(t);if(n){const d=n[0]-t;if(d>0)h+=`<div class="muted" style="margin-top:8px">Add ${d} more sticker${d===1?'':'s'} to reach ${n[0]} at $${n[1].toFixed(2)} each.</div>`}priceSummary.innerHTML=h}
 function sync(k){const c=gallery.querySelector(`[data-key="${CSS.escape(k)}"]`);if(!c)return;const q=selections[k]||0;c.classList.toggle('selected',q>0);c.querySelector('.qty-value').textContent=q}function setQty(k,q){q=Math.max(0,Math.min(99,parseInt(q)||0));if(q)selections[k]=q;else delete selections[k];sync(k);if(modalKey===k)modalQty.textContent=q;persist();summary();formStatus.textContent='';formStatus.classList.remove('error')}
-function cart(){selectionList.innerHTML='';const e=Object.entries(selections).map(([key,qty])=>({key,qty,design:all.find(d=>d.key===key)})).filter(x=>x.design).sort((a,b)=>a.design.display.localeCompare(b.design.display));if(!e.length){selectionList.innerHTML='<div class="muted" style="padding-top:9px;text-align:center">No stickers selected yet.</div>';return}e.forEach(x=>{const r=document.createElement('div');r.className='selection-row';r.innerHTML=`<div class="selection-name" title="${x.design.display}">${x.design.display}</div><div class="selection-controls"><button type="button" class="btn mini minus">−</button><strong>${x.qty}</strong><button type="button" class="btn mini plus">+</button><button type="button" class="btn mini mini-remove remove">×</button></div>`;r.querySelector('.minus').onclick=()=>setQty(x.key,x.qty-1);r.querySelector('.plus').onclick=()=>setQty(x.key,x.qty+1);r.querySelector('.remove').onclick=()=>setQty(x.key,0);selectionList.appendChild(r)})}function summary(){const t=total();selectionSummary.textContent=`TOTAL SELECTED: ${t} STICKER${t===1?'':'S'}`;price(t);cart();return t}
+function cart(){
+  selectionList.innerHTML='';
+  const e=Object.entries(selections)
+    .map(([key,qty])=>({key,qty,design:all.find(d=>d.key===key)}))
+    .filter(x=>x.design)
+    .sort((a,b)=>a.design.display.localeCompare(b.design.display));
+
+  if(!e.length){
+    selectionList.innerHTML='<div class="muted" style="padding-top:9px;text-align:center">No stickers selected yet.</div>';
+    return;
+  }
+
+  e.forEach(x=>{
+    const r=document.createElement('div');
+    r.className='selection-row';
+    r.innerHTML=`<div class="selection-name" title="${x.design.display}">${x.design.display}</div>
+      <div class="selection-controls">
+        <button type="button" class="qty-btn mini minus">−</button>
+        <input class="mini-qty-input" type="number" min="0" max="99" value="${x.qty}" inputmode="numeric" aria-label="Quantity for ${x.design.display}">
+        <button type="button" class="qty-btn mini plus">+</button>
+        <button type="button" class="qty-btn mini remove" aria-label="Remove ${x.design.display}">×</button>
+      </div>`;
+
+    r.querySelector('.minus').onclick=()=>setQty(x.key,(selections[x.key]||0)-1);
+    r.querySelector('.plus').onclick=()=>setQty(x.key,(selections[x.key]||0)+1);
+    r.querySelector('.remove').onclick=()=>setQty(x.key,0);
+
+    const input=r.querySelector('.mini-qty-input');
+    input.addEventListener('change',()=>setQty(x.key,input.value));
+    input.addEventListener('keydown',ev=>{
+      if(ev.key==='Enter'){
+        ev.preventDefault();
+        input.blur();
+      }
+    });
+
+    selectionList.appendChild(r);
+  });
+}
+function summary(){const t=total();selectionSummary.textContent=`TOTAL SELECTED: ${t} STICKER${t===1?'':'S'}`;price(t);cart();return t}
 function openModal(d){
   modalDesign=d;
   modalKey=d.key;
@@ -984,14 +1093,115 @@ function closeModal(){
   modalKey=null;
   modalDesign=null;
 }
-modalMinus.onclick=()=>{if(modalKey)setQty(modalKey,(selections[modalKey]||0)-1)};
-modalPlus.onclick=()=>{if(modalKey)setQty(modalKey,(selections[modalKey]||0)+1)};
-modalClose.onclick=closeModal;
+modalMinus.onclick=e=>{e.stopPropagation();if(modalKey)setQty(modalKey,(selections[modalKey]||0)-1)};
+modalPlus.onclick=e=>{e.stopPropagation();if(modalKey)setQty(modalKey,(selections[modalKey]||0)+1)};
+modalClose.onclick=e=>{e.stopPropagation();closeModal()};
+
+/* Clicking anywhere on the enlarged card closes it EXCEPT the + and - controls. */
+modalBox.addEventListener('click',e=>{
+  if(e.target.closest('#modalMinus,#modalPlus')) return;
+  closeModal();
+});
 modal.onclick=e=>{if(e.target===modal)closeModal()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-function addCard(d){const c=document.createElement('div');c.className='design-card';c.dataset.key=d.key;const q=selections[d.key]||0;if(q)c.classList.add('selected');c.innerHTML=`<div class="design-name" title="${d.display}">${d.display}</div><div class="thumb"><img src="${d.img}" alt="${d.display}" loading="lazy"></div><div class="qty-row"><button type="button" class="qty-btn minus">−</button><div class="qty-value">${q}</div><button type="button" class="qty-btn plus">+</button></div>`;c.querySelector('.thumb').onclick=()=>openModal(d);c.querySelector('.minus').onclick=()=>setQty(d.key,(selections[d.key]||0)-1);c.querySelector('.plus').onclick=()=>setQty(d.key,(selections[d.key]||0)+1);gallery.appendChild(c)}function status(){galleryStatus.textContent=filtered.length?`Showing ${Math.min(rendered,filtered.length)} of ${filtered.length} designs`:'No designs match that search.'}function more(){const n=filtered.slice(rendered,rendered+PAGE_SIZE);n.forEach(addCard);rendered+=n.length;status();loadMoreBtn.style.display=rendered<filtered.length?'inline-block':'none'}function reset(){gallery.innerHTML='';rendered=0;more();summary()}
-fetch('../designs.json').then(r=>{if(!r.ok)throw Error();return r.json()}).then(data=>{all=data.map((d,i)=>{const raw=d.img||d.image||d.src||d.file||'';const file=raw.substring(raw.lastIndexOf('/')+1),base=file.replace(/\.[^.]+$/,'');const img=raw.includes('/')?'../'+raw.replace(/^\.\//,''):'../img/'+raw;return{key:file||String(i),name:base.toLowerCase(),display:base,img}}).sort((a,b)=>a.display.localeCompare(b.display));load();filtered=all.slice();reset()}).catch(()=>{galleryStatus.textContent='Unable to load sticker designs.';formStatus.textContent='The sticker gallery could not be loaded. Please refresh the page.';formStatus.classList.add('error')});searchInput.oninput=()=>{const q=searchInput.value.toLowerCase().trim();filtered=q?all.filter(d=>d.name.includes(q)):all.slice();reset()};
-searchClear.onclick=()=>{searchInput.value='';filtered=all.slice();reset();searchInput.focus()};
+function addCard(d){
+  const c=document.createElement('div');
+  c.className='design-card';
+  c.dataset.key=d.key;
+  const q=selections[d.key]||0;
+  if(q)c.classList.add('selected');
+  c.innerHTML=`<div class="design-name" title="${d.display}">${d.display}</div><div class="thumb"><img src="${d.img}" alt="${d.display}" loading="lazy"></div><div class="qty-row"><button type="button" class="qty-btn minus">−</button><div class="qty-value">${q}</div><button type="button" class="qty-btn plus">+</button></div>`;
+  c.querySelector('.thumb').onclick=()=>openModal(d);
+  c.querySelector('.minus').onclick=()=>setQty(d.key,(selections[d.key]||0)-1);
+  c.querySelector('.plus').onclick=()=>setQty(d.key,(selections[d.key]||0)+1);
+  gallery.appendChild(c);
+}
+
+function status(){
+  galleryStatus.textContent=filtered.length
+    ?`Showing ${Math.min(rendered,filtered.length)} of ${filtered.length} designs`
+    :'No designs match that search.';
+}
+
+function renderToCount(count,preserveScroll=true){
+  const y=window.scrollY;
+  gallery.innerHTML='';
+  rendered=0;
+  const target=Math.min(Math.max(count,0),filtered.length);
+  filtered.slice(0,target).forEach(addCard);
+  rendered=target;
+  status();
+  loadMoreBtn.style.display=rendered<filtered.length?'inline-block':'none';
+  summary();
+  if(preserveScroll){
+    requestAnimationFrame(()=>window.scrollTo({top:y,left:0,behavior:'auto'}));
+  }
+}
+
+function more(){
+  const y=window.scrollY;
+  const n=filtered.slice(rendered,rendered+PAGE_SIZE);
+  n.forEach(addCard);
+  rendered+=n.length;
+
+  /* Only advance the remembered main-gallery position when NOT searching. */
+  if(!isSearching) browseRendered=rendered;
+
+  status();
+  loadMoreBtn.style.display=rendered<filtered.length?'inline-block':'none';
+
+  /* Adding cards should never move the user's viewport. */
+  requestAnimationFrame(()=>window.scrollTo({top:y,left:0,behavior:'auto'}));
+}
+
+fetch('../designs.json')
+  .then(r=>{if(!r.ok)throw Error();return r.json()})
+  .then(data=>{
+    all=data.map((d,i)=>{
+      const raw=d.img||d.image||d.src||d.file||'';
+      const file=raw.substring(raw.lastIndexOf('/')+1),base=file.replace(/\.[^.]+$/,'');
+      const img=raw.includes('/')?'../'+raw.replace(/^\.\//,''):'../img/'+raw;
+      return{key:file||String(i),name:base.toLowerCase(),display:base,img};
+    }).sort((a,b)=>a.display.localeCompare(b.display));
+
+    load();
+    filtered=all.slice();
+    browseRendered=PAGE_SIZE;
+    renderToCount(browseRendered,false);
+  })
+  .catch(()=>{
+    galleryStatus.textContent='Unable to load sticker designs.';
+    formStatus.textContent='The sticker gallery could not be loaded. Please refresh the page.';
+    formStatus.classList.add('error');
+  });
+
+searchInput.oninput=()=>{
+  const q=searchInput.value.toLowerCase().trim();
+
+  if(q){
+    /* Remember how far down the normal gallery had been loaded before searching. */
+    if(!isSearching){
+      browseRendered=Math.max(rendered,browseRendered,PAGE_SIZE);
+      isSearching=true;
+    }
+    filtered=all.filter(d=>d.name.includes(q));
+    renderToCount(PAGE_SIZE,true);
+  }else{
+    /* Clearing search restores the same amount of the main gallery instead of restarting at the beginning. */
+    filtered=all.slice();
+    isSearching=false;
+    renderToCount(browseRendered,true);
+  }
+};
+
+searchClear.onclick=()=>{
+  searchInput.value='';
+  filtered=all.slice();
+  isSearching=false;
+  renderToCount(browseRendered,true);
+  searchInput.focus({preventScroll:true});
+};
+
 loadMoreBtn.onclick=more;
 const clearSelections=()=>{
   if(!Object.keys(selections).length){
