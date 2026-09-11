@@ -1276,6 +1276,24 @@ tr.active-tier td{
   }
 }
 
+
+/* === FINAL HEADER COPY / WIDTH TWEAK === */
+.instruction-box{
+  width:min(1120px, 92vw) !important;
+  max-width:1120px !important;
+}
+
+/* Keep the three desktop instruction lines on one line where space allows */
+.instruction-step{
+  white-space:nowrap !important;
+}
+
+@media(max-width:1180px){
+  .instruction-step{
+    white-space:normal !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1286,7 +1304,7 @@ tr.active-tier td{
 <h1 class="oc-brand">Wholesale Sticker Order Form</h1>
 <div class="subhead instruction-box">
         <div class="instruction-step"><span>1</span><strong>Choose your stickers.</strong> Use the + / − buttons on any design.</div>
-        <div class="instruction-step"><span>2</span><strong>Adjust your order anytime.</strong> The Your Selection mini cart at the bottom lets you type quantities, use + / −, or remove designs.</div>
+        <div class="instruction-step"><span>2</span><strong>Adjust your order anytime.</strong> Your selections are displayed at the bottom, where you can type quantities, use + / −, or remove designs.</div>
         <div class="instruction-step"><span>3</span><strong>Reach at least 200 stickers.</strong> Your per-sticker price automatically drops as you reach higher quantity tiers.</div>
       </div>
       <div class="minimum" id="minimumNotice">200 STICKER MINIMUM</div>
@@ -1307,7 +1325,7 @@ tr.active-tier td{
 </div><div class="disclaimer">Final printed colors may vary slightly. Visible cutline colors are not printed.</div></section>
 <section class="summary-grid"><div class="summary-card"><h3>Wholesale Pricing (USD)</h3><table><thead><tr><th>Quantity</th><th>Price / Sticker</th></tr></thead><tbody><tr id="tier200"><td>200–499</td><td>$0.90</td></tr><tr id="tier500"><td>500–999</td><td>$0.80</td></tr><tr id="tier1000"><td>1000–1999</td><td>$0.75</td></tr><tr id="tier2000"><td>2000–2999</td><td>$0.70</td></tr><tr id="tier3000"><td>3000–3999</td><td>$0.65</td></tr><tr id="tier4000"><td>4000–4999</td><td>$0.60</td></tr><tr id="tier5000"><td>5000+</td><td>$0.55</td></tr></tbody></table></div>
 <div class="summary-card"><h3>Estimated Order</h3><div id="priceSummary"><div class="price-main">Estimated total: —</div><div class="muted">Select at least 200 stickers to unlock wholesale pricing.</div></div></div>
-<div class="summary-card"><h3>Your Selection</h3><div id="selectionSummary" class="selection-total">TOTAL SELECTED: 0 STICKERS</div><div id="selectionList" class="selection-list"><div class="muted" style="padding-top:9px;text-align:center">No stickers selected yet.</div></div></div></section>
+<div class="summary-card"><h3>Your Selections</h3><div id="selectionSummary" class="selection-total">TOTAL SELECTED: 0 STICKERS</div><div id="selectionList" class="selection-list"><div class="muted" style="padding-top:9px;text-align:center">No stickers selected yet.</div></div></div></section>
 <button type="submit" class="btn btn-solid submit">SUBMIT WHOLESALE ORDER</button><div id="formStatus" class="status" role="alert"></div>
 </form></div>
 <div id="modal" class="modal" aria-hidden="true">
