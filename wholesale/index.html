@@ -598,6 +598,64 @@ button:not(.btn-danger),
   }
 }
 
+
+/* === REMOVE BUTTON POSITIONING: TOP BESIDE CLEAR / BOTTOM RIGHT === */
+.sticky-search{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto auto !important;
+  gap:10px !important;
+  align-items:center !important;
+}
+
+.sticky-search .clear-all-btn{
+  white-space:nowrap !important;
+  padding:10px 16px !important;
+  font-size:.78rem !important;
+}
+
+.gallery-bottom-actions{
+  position:relative !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:58px !important;
+  margin:18px 0 4px !important;
+}
+
+.gallery-bottom-actions .load-btn{
+  margin:0 auto !important;
+}
+
+.gallery-bottom-actions .clear-all-btn{
+  position:absolute !important;
+  right:0 !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  white-space:nowrap !important;
+  padding:10px 16px !important;
+  font-size:.78rem !important;
+}
+
+@media(max-width:800px){
+  .sticky-search{
+    grid-template-columns:minmax(0,1fr) auto !important;
+  }
+  .sticky-search .clear-all-btn{
+    grid-column:1 / -1 !important;
+    justify-self:end !important;
+  }
+  .gallery-bottom-actions{
+    min-height:110px !important;
+    align-items:flex-start !important;
+  }
+  .gallery-bottom-actions .clear-all-btn{
+    top:auto !important;
+    bottom:0 !important;
+    right:0 !important;
+    transform:none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -618,11 +676,11 @@ button:not(.btn-danger),
 <div class="full"><label>Reseller Permit / Tax ID (optional)</label><input name="reseller_id" type="text"><div class="help">Enter a valid reseller permit / tax ID if applicable. Orders without a valid reseller permit are subject to applicable sales tax. Shipping will be added to the final invoice.</div></div>
 <div class="full"><label>Order Notes</label><textarea name="notes" placeholder="Anything we should know about this order?"></textarea></div></div></section>
 <section class="panel"><h2 class="section-title">Choose Your Stickers</h2><div class="search-wrap"><input id="searchInput" type="search" placeholder="Search stickers..."><button type="button" id="searchClear" class="search-clear">Clear</button></div><div class="toolbar"><span id="galleryStatus"></span></div>
-<div class="clear-row clear-row-top"><button type="button" id="clearAllBtn" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button></div>
+
 <div id="gallery" class="gallery"></div>
 <div class="gallery-bottom-actions">
-  <button type="button" id="clearAllBtnBottom" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button>
   <button type="button" id="loadMoreBtn" class="btn btn-solid load-btn">LOAD MORE</button>
+  <button type="button" id="clearAllBtnBottom" class="btn clear-all-btn">REMOVE ALL SELECTIONS</button>
 </div><div class="disclaimer">Final printed colors may vary slightly. Visible cutline colors are not printed.</div></section>
 <section class="summary-grid"><div class="summary-card"><h3>Wholesale Pricing (USD)</h3><table><thead><tr><th>Quantity</th><th>Price / Sticker</th></tr></thead><tbody><tr><td>200–499</td><td>$0.90</td></tr><tr><td>500–999</td><td>$0.80</td></tr><tr><td>1000–1999</td><td>$0.75</td></tr><tr><td>2000–2999</td><td>$0.70</td></tr><tr><td>3000–3999</td><td>$0.65</td></tr><tr><td>4000–4999</td><td>$0.60</td></tr><tr><td>5000+</td><td>$0.55</td></tr></tbody></table></div>
 <div class="summary-card"><h3>Estimated Order</h3><div id="priceSummary"><div class="price-main">Estimated total: —</div><div class="muted">Select at least 200 stickers to unlock wholesale pricing.</div></div></div>
