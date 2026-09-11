@@ -1490,6 +1490,60 @@ tr.active-tier td{
   background:#242424;
 }
 
+
+/* === MOBILE STICKY BAR COMPACT FIX === */
+@media (max-width:700px){
+  .search-wrap{
+    grid-template-columns:minmax(0,1fr) auto auto !important;
+    gap:6px !important;
+    padding:6px !important;
+    border-radius:22px !important;
+    align-items:center !important;
+  }
+
+  .search-field-wrap{
+    min-width:0 !important;
+  }
+
+  .search-field-wrap #searchInput{
+    min-width:0 !important;
+    padding:10px 11px !important;
+    font-size:14px !important;
+  }
+
+  .search-clear-integrated{
+    min-width:58px !important;
+    padding:0 9px !important;
+    font-size:.70rem !important;
+  }
+
+  .sticky-selected{
+    grid-column:auto !important;
+    justify-self:auto !important;
+    min-height:38px !important;
+    padding:0 9px !important;
+    font-size:.70rem !important;
+  }
+
+  #clearAllBtnTop{
+    grid-column:auto !important;
+    justify-self:auto !important;
+    width:auto !important;
+    min-width:58px !important;
+    padding:10px 9px !important;
+    font-size:0 !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+  }
+
+  #clearAllBtnTop::after{
+    content:"REMOVE";
+    font-size:.70rem;
+    font-weight:1000;
+    letter-spacing:.02em;
+  }
+}
+
 </style>
 </head>
 <body>
