@@ -1544,6 +1544,31 @@ tr.active-tier td{
   }
 }
 
+
+/* === MOBILE SEARCH READABILITY FIX === */
+@media(max-width:620px){
+  .search-wrap{
+    grid-template-columns:minmax(0,1fr) auto auto !important;
+    gap:6px !important;
+    padding:7px !important;
+  }
+  .search-field-wrap{min-width:0 !important;}
+  .search-field-wrap #searchInput{
+    font-size:16px !important;
+    padding:10px 12px !important;
+  }
+  .search-field-wrap #searchInput::placeholder{
+    font-size:16px !important;
+  }
+  .sticky-selected{
+    padding:0 10px !important;
+    font-size:.72rem !important;
+  }
+  #clearAllBtnTop{
+    padding:10px 11px !important;
+    font-size:.72rem !important;
+  }
+}
 </style>
 </head>
 <body>
