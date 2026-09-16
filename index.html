@@ -429,6 +429,24 @@ word-break:break-word;
     .oc-card{height:238px;padding-left:5px;padding-right:5px}
   }
 
+
+
+  /* === COPY-BEFORE-COMPLETE ALERT === */
+  #oc-progress{
+    position:relative;
+    transform-origin:center;
+    border-radius:999px;
+    padding:8px 14px;
+  }
+  #oc-progress.oc-progress-alert{animation:ocProgressGlow 1.7s ease-out 1 !important;}
+  @keyframes ocProgressGlow{
+    0%{transform:scale(1);background:transparent;color:#fff;box-shadow:0 0 0 0 rgba(57,255,20,.95),0 0 10px rgba(57,255,20,.25)}
+    35%{transform:scale(1.08);background:#39ff14;color:#000;box-shadow:0 0 0 10px rgba(57,255,20,.45),0 0 24px #39ff14,0 0 42px rgba(57,255,20,.95)}
+    70%{transform:scale(1.04);background:#000;color:#39ff14;box-shadow:0 0 0 22px rgba(57,255,20,.12),0 0 18px rgba(57,255,20,.75)}
+    100%{transform:scale(1);background:transparent;color:#fff;box-shadow:0 0 0 32px rgba(57,255,20,0),0 0 10px rgba(57,255,20,0)}
+  }
+  #oc-copy-main[aria-disabled="true"]{cursor:pointer;}
+
 </style>
 </head>
 <body>
@@ -465,7 +483,7 @@ word-break:break-word;
     <div id="oc-cart-actions">
       <button id="oc-clear" type="button">Remove all stickers</button>
     </div>
-    <button id="oc-copy-main" type="button" disabled>COPY MY STICKER LIST</button>
+    <button id="oc-copy-main" type="button" aria-disabled="true">COPY MY STICKER LIST</button>
     <div id="oc-send-note">SEND THIS LIST IN A MESSAGE AFTER PLACING ORDER</div>
     <div id="oc-copy-status"></div>
   </section>
@@ -500,7 +518,7 @@ word-break:break-word;
 (function(){
   const JSON_URL = "./designs.json";
   const IMG_BASE = "./img/";
-  const PAGE = 30;
+  const PAGE = 28;
   const STORAGE_KEY = "ocPublicStickerSelections_v1";
 
   const grid = document.getElementById("oc-grid");
@@ -535,6 +553,7 @@ word-break:break-word;
   let selections = {};
   let lightboxItem = null;
   let lightboxKey = null;
+  let browseShown=PAGE, isSearching=false, browseScrollY=0;
 
   function packQty(){
     const n = Math.floor(Number(packInput.value));
@@ -578,11 +597,22 @@ word-break:break-word;
     };
   }
   function fitTitle(el){
+    const full=el.textContent;
     let size=13;
     el.style.fontSize=size+"px";
     el.style.lineHeight="12px";
-    while(el.scrollHeight>24 && size>9){
+    while(el.scrollHeight>24 && size>10){
       size-=0.5; el.style.fontSize=size+"px";
+    }
+    if(el.scrollHeight>24){
+      let lo=0,hi=full.length,best="";
+      while(lo<=hi){
+        const mid=Math.floor((lo+hi)/2);
+        el.textContent=full.slice(0,mid).trimEnd()+"…";
+        if(el.scrollHeight<=24){best=el.textContent;lo=mid+1;}else hi=mid-1;
+      }
+      el.textContent=best||"…";
+      el.title=full;
     }
   }
   function updateProgress(){
@@ -591,12 +621,12 @@ word-break:break-word;
     if(total===max){
       progress.textContent=`${total} OF ${max} SELECTED — YOU'RE DONE`;
       progress.classList.add("oc-complete");
-      copyBtn.disabled=false;
+      copyBtn.setAttribute("aria-disabled","false");
       copyBtn.classList.add("oc-ready");
     }else{
       progress.textContent=`${total} OF ${max} SELECTED — CHOOSE ${Math.max(left,0)} MORE`;
       progress.classList.remove("oc-complete");
-      copyBtn.disabled=true;
+      copyBtn.setAttribute("aria-disabled","true");
       copyBtn.classList.remove("oc-ready");
     }
   }
@@ -680,12 +710,30 @@ word-break:break-word;
   }
   function applySearch(){
     const q=search.value.trim().toLowerCase();
-    filtered=allItems.filter(item=>
-      itemName(item).toLowerCase().includes(q) ||
-      itemFile(item).toLowerCase().includes(q)
-    );
-    shown=PAGE;
-    render();
+    if(q){
+      if(!isSearching){
+        browseShown=Math.max(shown,browseShown,PAGE);
+        browseScrollY=window.scrollY;
+        isSearching=true;
+      }
+      filtered=allItems.filter(item=>
+        itemName(item).toLowerCase().includes(q) ||
+        itemFile(item).toLowerCase().includes(q)
+      );
+      shown=PAGE;
+      render();
+      requestAnimationFrame(()=>{
+        const wrap=document.getElementById("oc-search-wrap");
+        const y=wrap.getBoundingClientRect().top+window.scrollY-10;
+        window.scrollTo({top:Math.max(0,y),left:0,behavior:"auto"});
+      });
+    }else{
+      filtered=allItems.slice();
+      isSearching=false;
+      shown=browseShown;
+      render();
+      requestAnimationFrame(()=>window.scrollTo({top:browseScrollY,left:0,behavior:"auto"}));
+    }
   }
   function setPacks(n){
     n=Math.max(1,Math.floor(Number(n)||1));
@@ -702,7 +750,17 @@ word-break:break-word;
     updateProgress(); save();
   }
   function copyList(){
-    if(totalSelected()!==maxAllowed()) return;
+    if(totalSelected()!==maxAllowed()){
+      const y=progress.getBoundingClientRect().top+window.scrollY-120;
+      window.scrollTo({top:Math.max(0,y),left:0,behavior:"smooth"});
+      progress.classList.remove("oc-progress-alert");
+      setTimeout(()=>{
+        void progress.offsetWidth;
+        progress.classList.add("oc-progress-alert");
+        setTimeout(()=>progress.classList.remove("oc-progress-alert"),1800);
+      },700);
+      return;
+    }
     const lines=[
       `10-PACKS: ${packQty()}`,
       `TOTAL STICKERS: ${totalSelected()}`,
@@ -715,9 +773,23 @@ word-break:break-word;
     }).catch(()=>showModal("Could not copy automatically. Please try again."));
   }
 
-  loadMore.addEventListener("click",()=>{shown+=PAGE;render();});
+  loadMore.addEventListener("click",()=>{
+    shown+=PAGE;
+    if(!isSearching) browseShown=shown;
+    render();
+  });
   search.addEventListener("input",applySearch);
-  clearSearch.addEventListener("click",()=>{search.value="";applySearch();});
+  clearSearch.addEventListener("click",()=>{
+    search.value="";
+    filtered=allItems.slice();
+    isSearching=false;
+    shown=browseShown;
+    render();
+    requestAnimationFrame(()=>{
+      window.scrollTo({top:browseScrollY,left:0,behavior:"auto"});
+      search.focus({preventScroll:true});
+    });
+  });
   packMinus.addEventListener("click",()=>setPacks(packQty()-1));
   packPlus.addEventListener("click",()=>setPacks(packQty()+1));
   packInput.addEventListener("change",()=>setPacks(packInput.value));
@@ -758,6 +830,7 @@ word-break:break-word;
       allItems=normalizeItems(data);
       filtered=allItems.slice();
       shown=PAGE;
+      browseShown=PAGE;
       render();
     })
     .catch(err=>{
