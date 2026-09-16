@@ -2125,6 +2125,11 @@
         "file":  "Backstreet Boys (Logo).jpg"
     },
     {
+        "id":  "Backtrack",
+        "name":  "Backtrack",
+        "file":  "Backtrack.jpg"
+    },
+    {
         "id":  "Bad Acid Trip",
         "name":  "Bad Acid Trip",
         "file":  "Bad Acid Trip.jpg"
@@ -2315,6 +2320,11 @@
         "file":  "Barathrum (Jetblack Metal).jpg"
     },
     {
+        "id":  "Barbarians Of California (And Now I\u0027m Just Gnashing My Teeth)",
+        "name":  "Barbarians Of California (And Now I\u0027m Just Gnashing My Teeth)",
+        "file":  "Barbarians Of California (And Now I\u0027m Just Gnashing My Teeth).jpg"
+    },
+    {
         "id":  "Barenaked Ladies",
         "name":  "Barenaked Ladies",
         "file":  "Barenaked Ladies.jpg"
@@ -2353,6 +2363,11 @@
         "id":  "Bastille",
         "name":  "Bastille",
         "file":  "Bastille.jpg"
+    },
+    {
+        "id":  "BAT",
+        "name":  "BAT",
+        "file":  "BAT.jpg"
     },
     {
         "id":  "Bathory (Goat Logo)",
@@ -2613,6 +2628,11 @@
         "id":  "Benny The Butcher",
         "name":  "Benny The Butcher",
         "file":  "Benny The Butcher.jpg"
+    },
+    {
+        "id":  "Bent Life",
+        "name":  "Bent Life",
+        "file":  "Bent Life.jpg"
     },
     {
         "id":  "Bentley (Vehicle Brand)",
@@ -3135,6 +3155,11 @@
         "file":  "Blaze Ya Dead Homie.jpg"
     },
     {
+        "id":  "Bleed From Within",
+        "name":  "Bleed From Within",
+        "file":  "Bleed From Within.jpg"
+    },
+    {
         "id":  "Bleeding Through",
         "name":  "Bleeding Through",
         "file":  "Bleeding Through.jpg"
@@ -3418,6 +3443,11 @@
         "id":  "Bob Seger \u0026 The Silver Bullet Band",
         "name":  "Bob Seger \u0026 The Silver Bullet Band",
         "file":  "Bob Seger \u0026 The Silver Bullet Band.jpg"
+    },
+    {
+        "id":  "Bodega (ATM)",
+        "name":  "Bodega (ATM)",
+        "file":  "Bodega (ATM).jpg"
     },
     {
         "id":  "Bodies, The",
@@ -3730,6 +3760,11 @@
         "file":  "Bromure.jpg"
     },
     {
+        "id":  "Bronx, The",
+        "name":  "Bronx, The",
+        "file":  "Bronx, The.jpg"
+    },
+    {
         "id":  "Brotha Lynch Hung",
         "name":  "Brotha Lynch Hung",
         "file":  "Brotha Lynch Hung.jpg"
@@ -4003,6 +4038,16 @@
         "id":  "Caligulas Horse",
         "name":  "Caligulas Horse",
         "file":  "Caligulas Horse.jpg"
+    },
+    {
+        "id":  "Call The Cops",
+        "name":  "Call The Cops",
+        "file":  "Call The Cops.jpg"
+    },
+    {
+        "id":  "Cancer Bats",
+        "name":  "Cancer Bats",
+        "file":  "Cancer Bats.jpg"
     },
     {
         "id":  "Candlebox",
@@ -7035,6 +7080,11 @@
         "file":  "Dilated Peoples.jpg"
     },
     {
+        "id":  "Dillinger Escape Plan, The",
+        "name":  "Dillinger Escape Plan, The",
+        "file":  "Dillinger Escape Plan, The.jpg"
+    },
+    {
         "id":  "Dillinger Four",
         "name":  "Dillinger Four",
         "file":  "Dillinger Four.jpg"
@@ -7945,6 +7995,11 @@
         "file":  "Dying Fetus (War Of Attrition).jpg"
     },
     {
+        "id":  "Dying Wish",
+        "name":  "Dying Wish",
+        "file":  "Dying Wish.jpg"
+    },
+    {
         "id":  "DYS",
         "name":  "DYS",
         "file":  "DYS.jpg"
@@ -8580,6 +8635,11 @@
         "file":  "Everclear.jpg"
     },
     {
+        "id":  "Every Time I Die",
+        "name":  "Every Time I Die",
+        "file":  "Every Time I Die.jpg"
+    },
+    {
         "id":  "Eve\u0027s Plum",
         "name":  "Eve\u0027s Plum",
         "file":  "Eve\u0027s Plum.jpg"
@@ -9018,6 +9078,11 @@
         "id":  "Fastkill",
         "name":  "Fastkill",
         "file":  "Fastkill.jpg"
+    },
+    {
+        "id":  "Fat Dog",
+        "name":  "Fat Dog",
+        "file":  "Fat Dog.jpg"
     },
     {
         "id":  "Fat Nick",
@@ -9610,6 +9675,11 @@
         "file":  "Friday The 13th (Movie).jpg"
     },
     {
+        "id":  "Froglord (Army Of Frogs)",
+        "name":  "Froglord (Army Of Frogs)",
+        "file":  "Froglord (Army Of Frogs).jpg"
+    },
+    {
         "id":  "From Ashes Rise",
         "name":  "From Ashes Rise",
         "file":  "From Ashes Rise.jpg"
@@ -9948,6 +10018,11 @@
         "id":  "Get Up Kids, The",
         "name":  "Get Up Kids, The",
         "file":  "Get Up Kids, The.jpg"
+    },
+    {
+        "id":  "Getdown Services",
+        "name":  "Getdown Services",
+        "file":  "Getdown Services.jpg"
     },
     {
         "id":  "Geto Boys",
@@ -10515,6 +10590,11 @@
         "file":  "Grandmaster Flash \u0026 The Furious Five.jpg"
     },
     {
+        "id":  "Grandson",
+        "name":  "Grandson",
+        "file":  "Grandson.jpg"
+    },
+    {
         "id":  "Granmax",
         "name":  "Granmax",
         "file":  "Granmax.jpg"
@@ -10860,6 +10940,11 @@
         "file":  "Guided Cradle.jpg"
     },
     {
+        "id":  "Guilt Trip",
+        "name":  "Guilt Trip",
+        "file":  "Guilt Trip.jpg"
+    },
+    {
         "id":  "Gulch",
         "name":  "Gulch",
         "file":  "Gulch.jpg"
@@ -11153,6 +11238,11 @@
         "id":  "Heavy Load",
         "name":  "Heavy Load",
         "file":  "Heavy Load.jpg"
+    },
+    {
+        "id":  "Heavy Lungs",
+        "name":  "Heavy Lungs",
+        "file":  "Heavy Lungs.jpg"
     },
     {
         "id":  "Hecate Enthroned",
@@ -14390,6 +14480,11 @@
         "file":  "Make Authority History (Political Protest).jpg"
     },
     {
+        "id":  "Make Them Suffer",
+        "name":  "Make Them Suffer",
+        "file":  "Make Them Suffer.jpg"
+    },
+    {
         "id":  "Malevolent Creation (Logo)",
         "name":  "Malevolent Creation (Logo)",
         "file":  "Malevolent Creation (Logo).jpg"
@@ -15303,6 +15398,11 @@
         "id":  "Misfits (Want Your Skull)",
         "name":  "Misfits (Want Your Skull)",
         "file":  "Misfits (Want Your Skull).jpg"
+    },
+    {
+        "id":  "Miss May I",
+        "name":  "Miss May I",
+        "file":  "Miss May I.jpg"
     },
     {
         "id":  "Mission, The",
@@ -18240,6 +18340,11 @@
         "file":  "Purity Ring.jpg"
     },
     {
+        "id":  "Puscifer",
+        "name":  "Puscifer",
+        "file":  "Puscifer.jpg"
+    },
+    {
         "id":  "Pusha T",
         "name":  "Pusha T",
         "file":  "Pusha T.jpg"
@@ -18788,6 +18893,11 @@
         "id":  "Reel Big Fish",
         "name":  "Reel Big Fish",
         "file":  "Reel Big Fish.jpg"
+    },
+    {
+        "id":  "Refused",
+        "name":  "Refused",
+        "file":  "Refused.jpg"
     },
     {
         "id":  "REM (Losing My Religion)",
@@ -20775,6 +20885,16 @@
         "file":  "Smurfs (Cartoon).jpg"
     },
     {
+        "id":  "Smut Peddlers (Iron Cross)",
+        "name":  "Smut Peddlers (Iron Cross)",
+        "file":  "Smut Peddlers (Iron Cross).jpg"
+    },
+    {
+        "id":  "Smut Peddlers (Skull And Crossbones)",
+        "name":  "Smut Peddlers (Skull And Crossbones)",
+        "file":  "Smut Peddlers (Skull And Crossbones).jpg"
+    },
+    {
         "id":  "Snapped Ankles",
         "name":  "Snapped Ankles",
         "file":  "Snapped Ankles.jpg"
@@ -21655,6 +21775,11 @@
         "file":  "Subtonix.jpg"
     },
     {
+        "id":  "Suburban Scum",
+        "name":  "Suburban Scum",
+        "file":  "Suburban Scum.jpg"
+    },
+    {
         "id":  "Suburbia (Movie)",
         "name":  "Suburbia (Movie)",
         "file":  "Suburbia (Movie).jpg"
@@ -22343,6 +22468,11 @@
         "id":  "Tim McGraw",
         "name":  "Tim McGraw",
         "file":  "Tim McGraw.jpg"
+    },
+    {
+        "id":  "Time Again",
+        "name":  "Time Again",
+        "file":  "Time Again.jpg"
     },
     {
         "id":  "Timeghoul",
@@ -23910,6 +24040,11 @@
         "file":  "WHOKILLEDXIX.jpg"
     },
     {
+        "id":  "Whores (War)",
+        "name":  "Whores (War)",
+        "file":  "Whores (War).jpg"
+    },
+    {
         "id":  "Why Everyone Left",
         "name":  "Why Everyone Left",
         "file":  "Why Everyone Left.jpg"
@@ -24273,6 +24408,11 @@
         "id":  "xBrainiax",
         "name":  "xBrainiax",
         "file":  "xBrainiax.jpg"
+    },
+    {
+        "id":  "XCOMM",
+        "name":  "XCOMM",
+        "file":  "XCOMM.jpg"
     },
     {
         "id":  "Xentrix (Ghost Busters)",
