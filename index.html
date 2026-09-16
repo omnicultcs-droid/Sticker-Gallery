@@ -723,8 +723,9 @@ word-break:break-word;
       shown=PAGE;
       render();
       requestAnimationFrame(()=>{
-        const wrap=document.getElementById("oc-search-wrap");
-        const y=wrap.getBoundingClientRect().top+window.scrollY-10;
+        /* Search bar is sticky, so its own position may still be the current viewport.
+           Jump to the actual gallery results instead. */
+        const y=grid.getBoundingClientRect().top + window.scrollY - 95;
         window.scrollTo({top:Math.max(0,y),left:0,behavior:"auto"});
       });
     }else{
