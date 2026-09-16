@@ -447,6 +447,150 @@ word-break:break-word;
   }
   #oc-copy-main[aria-disabled="true"]{cursor:pointer;}
 
+
+  /* === NUMBERED CUSTOMER INSTRUCTIONS === */
+  .oc-instruction-box{
+    width:min(1180px,92vw);
+    max-width:1180px;
+    box-sizing:border-box;
+    margin:16px auto 18px;
+    padding:16px 22px;
+    border:1px solid rgba(57,255,20,.58);
+    border-radius:14px;
+    background:linear-gradient(180deg,rgba(8,14,8,.96),rgba(2,6,2,.98));
+    color:#fff;
+    text-align:left;
+    box-shadow:0 0 8px rgba(57,255,20,.20),inset 0 0 12px rgba(57,255,20,.035);
+  }
+  .oc-instruction-step{
+    display:block;
+    width:100%;
+    margin:0;
+    color:#fff;
+    font-size:1.02rem;
+    line-height:1.45;
+    white-space:nowrap;
+  }
+  .oc-instruction-step + .oc-instruction-step{margin-top:10px;}
+  .oc-instruction-step span{
+    display:inline-flex;
+    vertical-align:middle;
+    width:30px;
+    height:30px;
+    min-width:30px;
+    margin-right:10px;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#39ff14;
+    color:#000;
+    font-weight:1000;
+    box-shadow:0 0 10px rgba(57,255,20,.75);
+  }
+  .oc-instruction-step strong{color:#fff;}
+  @media(max-width:1180px){
+    .oc-instruction-step{white-space:normal;}
+  }
+  @media(max-width:700px){
+    .oc-instruction-box{padding:15px 16px;}
+    .oc-instruction-step{font-size:.98rem;}
+  }
+
+
+  /* === WHOLESALE-STYLE SEARCH BAR === */
+  #oc-search-wrap{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    gap:0 !important;
+    align-items:center !important;
+    position:sticky !important;
+    top:10px !important;
+    z-index:1000 !important;
+    background:#000 !important;
+    padding:8px !important;
+    border-radius:999px !important;
+  }
+  #oc-search-field-wrap{
+    position:relative;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:stretch;
+    min-width:0;
+    border:2px solid #39ff14;
+    border-radius:999px;
+    background:#fff;
+    overflow:hidden;
+    box-shadow:0 0 7px #39ff14,0 0 16px rgba(57,255,20,.65);
+  }
+  #oc-search-field-wrap #oc-search{
+    width:100% !important;
+    min-width:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    background:#fff !important;
+    color:#000 !important;
+    padding:11px 16px !important;
+    outline:none !important;
+  }
+  #oc-search-field-wrap #oc-search:focus{box-shadow:none !important;}
+  #oc-search::-webkit-search-cancel-button{
+    -webkit-appearance:none !important;
+    appearance:none !important;
+    display:none !important;
+  }
+  #oc-search-clear{
+    min-width:92px !important;
+    padding:0 18px !important;
+    border:0 !important;
+    border-left:1px solid #2c2c2c !important;
+    border-radius:0 !important;
+    background:#111 !important;
+    color:#fff !important;
+    font-size:.82rem !important;
+    font-weight:1000 !important;
+    letter-spacing:.04em !important;
+    cursor:pointer !important;
+    box-shadow:none !important;
+    opacity:0;
+    pointer-events:none;
+    transition:background .12s ease,opacity .12s ease !important;
+  }
+  #oc-search-clear.visible{
+    opacity:1;
+    pointer-events:auto;
+  }
+  #oc-search-clear:hover{
+    background:#242424 !important;
+    box-shadow:none !important;
+  }
+
+  /* === WHOLESALE-STYLE LOAD MORE === */
+  #oc-load-more{
+    min-width:180px !important;
+    padding:11px 24px !important;
+    border:1px solid #39ff14 !important;
+    border-radius:999px !important;
+    background:#071007 !important;
+    color:#39ff14 !important;
+    font-weight:1000 !important;
+    letter-spacing:.03em !important;
+    cursor:pointer !important;
+    box-shadow:0 0 6px #39ff14,0 0 13px #39ff14,0 0 24px rgba(57,255,20,.9) !important;
+    transition:transform .12s ease,box-shadow .12s ease,filter .12s ease,background .12s ease !important;
+  }
+  #oc-load-more:hover{
+    background:#0d1a0d !important;
+    filter:brightness(1.08);
+    box-shadow:0 0 9px #39ff14,0 0 22px rgba(57,255,20,.85) !important;
+  }
+  #oc-load-more:active{transform:scale(.97);}
+  @media(max-width:620px){
+    #oc-search-wrap{padding:6px !important;border-radius:22px !important;}
+    #oc-search-field-wrap #oc-search{padding:10px 11px !important;font-size:14px !important;}
+    #oc-search-clear{min-width:58px !important;padding:0 9px !important;font-size:.70rem !important;}
+  }
+
 </style>
 </head>
 <body>
@@ -455,7 +599,11 @@ word-break:break-word;
     <img class="oc-logo" src="./Logo.png" alt="OMNI-CULT">
   </a>
   <div class="oc-brand">STICKER GALLERY</div>
-  <p class="oc-subtitle">Choose your sticker designs, copy your finished list, then send it in a message after placing your order.</p>
+  <p class="oc-subtitle"><div class="oc-instruction-box">
+      <div class="oc-instruction-step"><span>1</span> Select how many <strong>10-packs</strong> you want.</div>
+      <div class="oc-instruction-step"><span>2</span> Browse or search the gallery and select the exact number of stickers needed. <strong>Duplicates are allowed.</strong></div>
+      <div class="oc-instruction-step"><span>3</span> When finished, click <strong>COPY MY STICKER LIST</strong> and send the copied list to us in a message with your order.</div>
+    </div></p>
 
   <section id="oc-pack-question">
     <h2>HOW MANY 10-PACKS DO YOU WANT?</h2>
@@ -470,8 +618,10 @@ word-break:break-word;
   <div id="oc-progress">0 OF 10 SELECTED — CHOOSE 10 MORE</div>
 
   <div id="oc-search-wrap">
-    <input id="oc-search" type="text" placeholder="Search stickers...">
-    <button id="oc-search-clear" type="button">Clear</button>
+    <div id="oc-search-field-wrap">
+      <input id="oc-search" type="text" placeholder="Search stickers...">
+      <button id="oc-search-clear" type="button">Clear</button>
+    </div>
   </div>
 
   <div id="oc-grid"></div>
@@ -710,6 +860,7 @@ word-break:break-word;
   }
   function applySearch(){
     const q=search.value.trim().toLowerCase();
+    clearSearch.classList.toggle("visible",q.length>0);
     if(q){
       if(!isSearching){
         browseShown=Math.max(shown,browseShown,PAGE);
@@ -755,11 +906,21 @@ word-break:break-word;
       const y=progress.getBoundingClientRect().top+window.scrollY-120;
       window.scrollTo({top:Math.max(0,y),left:0,behavior:"smooth"});
       progress.classList.remove("oc-progress-alert");
-      setTimeout(()=>{
-        void progress.offsetWidth;
-        progress.classList.add("oc-progress-alert");
-        setTimeout(()=>progress.classList.remove("oc-progress-alert"),1800);
-      },700);
+
+      /* Start the flash only after the smooth scroll has actually reached
+         the progress message. This works no matter how far down the customer
+         has browsed with LOAD MORE. */
+      const targetY=Math.max(0,y);
+      const waitForArrival=()=>{
+        if(Math.abs(window.scrollY-targetY)<=8){
+          void progress.offsetWidth;
+          progress.classList.add("oc-progress-alert");
+          setTimeout(()=>progress.classList.remove("oc-progress-alert"),1800);
+        }else{
+          requestAnimationFrame(waitForArrival);
+        }
+      };
+      requestAnimationFrame(waitForArrival);
       return;
     }
     const lines=[
@@ -782,6 +943,7 @@ word-break:break-word;
   search.addEventListener("input",applySearch);
   clearSearch.addEventListener("click",()=>{
     search.value="";
+    clearSearch.classList.remove("visible");
     filtered=allItems.slice();
     isSearching=false;
     shown=browseShown;
