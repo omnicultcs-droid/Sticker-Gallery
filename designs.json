@@ -695,9 +695,59 @@
         "file":  "Against Empire.jpg"
     },
     {
-        "id":  "Against Me!",
-        "name":  "Against Me!",
-        "file":  "Against Me!.jpg"
+        "id":  "Against Me! (Acoustic EP)",
+        "name":  "Against Me! (Acoustic EP)",
+        "file":  "Against Me! (Acoustic EP).jpg"
+    },
+    {
+        "id":  "Against Me! (As The Eternal Cowboy)",
+        "name":  "Against Me! (As The Eternal Cowboy)",
+        "file":  "Against Me! (As The Eternal Cowboy).jpg"
+    },
+    {
+        "id":  "Against Me! (Cavalier Eternal)",
+        "name":  "Against Me! (Cavalier Eternal)",
+        "file":  "Against Me! (Cavalier Eternal).jpg"
+    },
+    {
+        "id":  "Against Me! (Crime As Forgiven By)",
+        "name":  "Against Me! (Crime As Forgiven By)",
+        "file":  "Against Me! (Crime As Forgiven By).jpg"
+    },
+    {
+        "id":  "Against Me! (Logo)",
+        "name":  "Against Me! (Logo)",
+        "file":  "Against Me! (Logo).jpg"
+    },
+    {
+        "id":  "Against Me! (New Wave)",
+        "name":  "Against Me! (New Wave)",
+        "file":  "Against Me! (New Wave).jpg"
+    },
+    {
+        "id":  "Against Me! (Reinventing Axl Rose)",
+        "name":  "Against Me! (Reinventing Axl Rose)",
+        "file":  "Against Me! (Reinventing Axl Rose).jpg"
+    },
+    {
+        "id":  "Against Me! (Self Titled)",
+        "name":  "Against Me! (Self Titled)",
+        "file":  "Against Me! (Self Titled).jpg"
+    },
+    {
+        "id":  "Against Me! (Shape Shift With Me)",
+        "name":  "Against Me! (Shape Shift With Me)",
+        "file":  "Against Me! (Shape Shift With Me).jpg"
+    },
+    {
+        "id":  "Against Me! (Skull Logo)",
+        "name":  "Against Me! (Skull Logo)",
+        "file":  "Against Me! (Skull Logo).jpg"
+    },
+    {
+        "id":  "Against Me! (Transgender Dysphoria Blues)",
+        "name":  "Against Me! (Transgender Dysphoria Blues)",
+        "file":  "Against Me! (Transgender Dysphoria Blues).jpg"
     },
     {
         "id":  "Agalloch",
@@ -748,6 +798,11 @@
         "id":  "Agoraphobic Nosebleed (Goat)",
         "name":  "Agoraphobic Nosebleed (Goat)",
         "file":  "Agoraphobic Nosebleed (Goat).jpg"
+    },
+    {
+        "id":  "Agoraphobic Nosebleed (Logo)",
+        "name":  "Agoraphobic Nosebleed (Logo)",
+        "file":  "Agoraphobic Nosebleed (Logo).jpg"
     },
     {
         "id":  "Agression",
@@ -1745,6 +1800,11 @@
         "file":  "Assück (Blindspot).jpg"
     },
     {
+        "id":  "Assuck (Logo)",
+        "name":  "Assuck (Logo)",
+        "file":  "Assuck (Logo).jpg"
+    },
+    {
         "id":  "Assuck (Misery Index)",
         "name":  "Assuck (Misery Index)",
         "file":  "Assuck (Misery Index).jpg"
@@ -1773,6 +1833,11 @@
         "id":  "At The Gates (Tall Logo)",
         "name":  "At The Gates (Tall Logo)",
         "file":  "At The Gates (Tall Logo).jpg"
+    },
+    {
+        "id":  "At The Gates (Text Logo)",
+        "name":  "At The Gates (Text Logo)",
+        "file":  "At The Gates (Text Logo).jpg"
     },
     {
         "id":  "Ataraxy",
@@ -1913,6 +1978,11 @@
         "id":  "Aus Rotten (If Only Your Veins Were Filled With Oil)",
         "name":  "Aus Rotten (If Only Your Veins Were Filled With Oil)",
         "file":  "Aus Rotten (If Only Your Veins Were Filled With Oil).jpg"
+    },
+    {
+        "id":  "Aus Rotten (Logo)",
+        "name":  "Aus Rotten (Logo)",
+        "file":  "Aus Rotten (Logo).jpg"
     },
     {
         "id":  "Aus Rotten (Perverted Patriotism)",
@@ -2373,6 +2443,11 @@
         "id":  "Bathory (Goat Logo)",
         "name":  "Bathory (Goat Logo)",
         "file":  "Bathory (Goat Logo).jpg"
+    },
+    {
+        "id":  "Bathory (Logo)",
+        "name":  "Bathory (Logo)",
+        "file":  "Bathory (Logo).jpg"
     },
     {
         "id":  "Bathory (Satan My Master)",
@@ -3265,9 +3340,14 @@
         "file":  "Blockbuster Video (Store Brand).jpg"
     },
     {
-        "id":  "Blondie",
-        "name":  "Blondie",
-        "file":  "Blondie.jpg"
+        "id":  "Blondie (Debbie Harry)",
+        "name":  "Blondie (Debbie Harry)",
+        "file":  "Blondie (Debbie Harry).jpg"
+    },
+    {
+        "id":  "Blondie (Logo)",
+        "name":  "Blondie (Logo)",
+        "file":  "Blondie (Logo).jpg"
     },
     {
         "id":  "Blood Brothers",
@@ -3283,6 +3363,11 @@
         "id":  "Blood Incantation (Interdimensional Extinction)",
         "name":  "Blood Incantation (Interdimensional Extinction)",
         "file":  "Blood Incantation (Interdimensional Extinction).jpg"
+    },
+    {
+        "id":  "Blood Incantation (Logo)",
+        "name":  "Blood Incantation (Logo)",
+        "file":  "Blood Incantation (Logo).jpg"
     },
     {
         "id":  "Blood On The Dance Floor",
@@ -3465,6 +3550,11 @@
         "file":  "Body Count (Chris Dorner).jpg"
     },
     {
+        "id":  "Body Count (Revolver Logo)",
+        "name":  "Body Count (Revolver Logo)",
+        "file":  "Body Count (Revolver Logo).jpg"
+    },
+    {
         "id":  "Body Void",
         "name":  "Body Void",
         "file":  "Body Void.jpg"
@@ -3495,9 +3585,14 @@
         "file":  "Boko Yout.jpg"
     },
     {
-        "id":  "Bolt Thrower",
-        "name":  "Bolt Thrower",
-        "file":  "Bolt Thrower.jpg"
+        "id":  "Bolt Thrower (Color Logo)",
+        "name":  "Bolt Thrower (Color Logo)",
+        "file":  "Bolt Thrower (Color Logo).jpg"
+    },
+    {
+        "id":  "Bolt Thrower (Stone Logo)",
+        "name":  "Bolt Thrower (Stone Logo)",
+        "file":  "Bolt Thrower (Stone Logo).jpg"
     },
     {
         "id":  "Boltcutter",
@@ -3940,9 +4035,14 @@
         "file":  "Bury Your Dead.jpg"
     },
     {
-        "id":  "Burzum",
-        "name":  "Burzum",
-        "file":  "Burzum.jpg"
+        "id":  "Burzum (Logo)",
+        "name":  "Burzum (Logo)",
+        "file":  "Burzum (Logo).jpg"
+    },
+    {
+        "id":  "Burzum (Untitled)",
+        "name":  "Burzum (Untitled)",
+        "file":  "Burzum (Untitled).jpg"
     },
     {
         "id":  "Busdriver",
@@ -4045,9 +4145,19 @@
         "file":  "Call The Cops.jpg"
     },
     {
+        "id":  "Cancer (Logo)",
+        "name":  "Cancer (Logo)",
+        "file":  "Cancer (Logo).jpg"
+    },
+    {
         "id":  "Cancer Bats",
         "name":  "Cancer Bats",
         "file":  "Cancer Bats.jpg"
+    },
+    {
+        "id":  "Cancer Christ (Logo)",
+        "name":  "Cancer Christ (Logo)",
+        "file":  "Cancer Christ (Logo).jpg"
     },
     {
         "id":  "Candlebox",
@@ -4130,9 +4240,9 @@
         "file":  "Cant Spell Cowardice Without ICE (Political Protest).jpg"
     },
     {
-        "id":  "Capitalist Casualties",
-        "name":  "Capitalist Casualties",
-        "file":  "Capitalist Casualties.jpg"
+        "id":  "Capitalist Casualties (Logo)",
+        "name":  "Capitalist Casualties (Logo)",
+        "file":  "Capitalist Casualties (Logo).jpg"
     },
     {
         "id":  "Cappadonna",
@@ -4605,9 +4715,14 @@
         "file":  "Chats, The (Get This In Ya).jpg"
     },
     {
-        "id":  "Cheap Sex",
-        "name":  "Cheap Sex",
-        "file":  "Cheap Sex.jpg"
+        "id":  "Cheap Sex (I\u0027m A Whore For)",
+        "name":  "Cheap Sex (I\u0027m A Whore For)",
+        "file":  "Cheap Sex (I\u0027m A Whore For).jpg"
+    },
+    {
+        "id":  "Cheap Sex (Logo)",
+        "name":  "Cheap Sex (Logo)",
+        "file":  "Cheap Sex (Logo).jpg"
     },
     {
         "id":  "Cheap Trick",
@@ -5458,6 +5573,11 @@
         "id":  "Cramps (Human Fly)",
         "name":  "Cramps (Human Fly)",
         "file":  "Cramps (Human Fly).jpg"
+    },
+    {
+        "id":  "Cramps (Logo)",
+        "name":  "Cramps (Logo)",
+        "file":  "Cramps (Logo).jpg"
     },
     {
         "id":  "Cramps (Smell Of Female)",
@@ -7220,9 +7340,9 @@
         "file":  "Discharge (Why).jpg"
     },
     {
-        "id":  "Disclose",
-        "name":  "Disclose",
-        "file":  "Disclose.jpg"
+        "id":  "Disclose (D-Beat Raw Punk)",
+        "name":  "Disclose (D-Beat Raw Punk)",
+        "file":  "Disclose (D-Beat Raw Punk).jpg"
     },
     {
         "id":  "Discocks, The",
@@ -10413,6 +10533,11 @@
         "id":  "Golf Wang (Cat)",
         "name":  "Golf Wang (Cat)",
         "file":  "Golf Wang (Cat).jpg"
+    },
+    {
+        "id":  "Gomorrah (Logo)",
+        "name":  "Gomorrah (Logo)",
+        "file":  "Gomorrah (Logo).jpg"
     },
     {
         "id":  "Gonads, The",
@@ -14085,6 +14210,11 @@
         "file":  "Local H.jpg"
     },
     {
+        "id":  "Locked Shut (Logo)",
+        "name":  "Locked Shut (Logo)",
+        "file":  "Locked Shut (Logo).jpg"
+    },
+    {
         "id":  "Locust",
         "name":  "Locust",
         "file":  "Locust.jpg"
@@ -14455,14 +14585,14 @@
         "file":  "Madonna.jpg"
     },
     {
+        "id":  "Magrudergrind (Logo)",
+        "name":  "Magrudergrind (Logo)",
+        "file":  "Magrudergrind (Logo).jpg"
+    },
+    {
         "id":  "Magrudergrind (Self Titled Yellow Album)",
         "name":  "Magrudergrind (Self Titled Yellow Album)",
         "file":  "Magrudergrind (Self Titled Yellow Album).jpg"
-    },
-    {
-        "id":  "Magrudergrind",
-        "name":  "Magrudergrind",
-        "file":  "Magrudergrind.jpg"
     },
     {
         "id":  "Maico (Motocross Brand)",
