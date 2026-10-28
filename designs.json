@@ -7345,6 +7345,11 @@
         "file":  "Dirt.jpg"
     },
     {
+        "id":  "Dirtbag",
+        "name":  "Dirtbag",
+        "file":  "Dirtbag.jpg"
+    },
+    {
         "id":  "Dirty Heads",
         "name":  "Dirty Heads",
         "file":  "Dirty Heads.jpg"
@@ -9428,6 +9433,11 @@
         "id":  "Fearless Iranians From Hell (Logo)",
         "name":  "Fearless Iranians From Hell (Logo)",
         "file":  "Fearless Iranians From Hell (Logo).jpg"
+    },
+    {
+        "id":  "Fecal Matter",
+        "name":  "Fecal Matter",
+        "file":  "Fecal Matter.jpg"
     },
     {
         "id":  "Fedral Death Alliance",
@@ -21673,6 +21683,11 @@
         "id":  "Spitfire Logo (Skateboard Brand)",
         "name":  "Spitfire Logo (Skateboard Brand)",
         "file":  "Spitfire Logo (Skateboard Brand).jpg"
+    },
+    {
+        "id":  "Spitting On Cops (Keep On Truckin)",
+        "name":  "Spitting On Cops (Keep On Truckin)",
+        "file":  "Spitting On Cops (Keep On Truckin).jpg"
     },
     {
         "id":  "Splodgenessabounds (Masks)",
